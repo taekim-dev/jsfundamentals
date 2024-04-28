@@ -1,8 +1,9 @@
-function arrayMap<T, U>(array: T[], callback: (value: T, index: number, array: T[]) => U): U[] {
+// TODO: Fix Typescript Error
+function arrayMap<T, U>(array: T[], callback: (value : T, index: number, array: T[]) => U): U[] {
     let result: U[] = [];
-    for (let i = 0; i < array.length; i++) {
-        result.push(callback(array[i], i, array));
-    }
+    array.forEach((element : T, index : number, array : T[]) => {
+        result.push(callback(element, index, array));
+    });
     return result;
 }
 
