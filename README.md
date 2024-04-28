@@ -1,75 +1,9 @@
-# Nuxt 3 Minimal Starter
+# JSFundamentals
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Overview
 
-## Setup
+JSFundamentals is a Vue 3 and Nuxt.js-powered application designed to help users practice essential JavaScript and TypeScript methods.
 
-Make sure to install the dependencies:
+## Design
 
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+The UI is clean and minimalistic, optimized for a distraction-free coding experience. You can find the design document with detailed mockups and design rationale here: [link](https://docs.google.com/document/d/11Jw59GHIPf-pdmDOyiBcLv2DxqIpeuaBQ3NxDv9J_7A/edit?usp=sharing)
