@@ -8,6 +8,13 @@ describe('arrayReduce', () => {
             expect(result).toEqual([1, 3, 6]);
         })
 
+        test('applies a function with initial element', () => {
+            const input = [1, 2, 3];
+            const initialValue = 2;
+            const result = arrayReduce(input, (acc, curr) => acc + curr, initialValue);
+            expect(result).toEqual([3, 5, 8]);
+        })
+
         // test('applies callback with element and index passed to the callback', () => {
         //     const input = [1, 2, 3];
         //     const result = arrayReduce(input, (x, index) => x * 2 + index);

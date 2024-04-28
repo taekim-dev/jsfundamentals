@@ -1,5 +1,5 @@
-// const arrayMap = require('./arrayMap.js');
-const arrayMap = require('./arrayMap.ts')
+const arrayMap = require('./arrayMap.js');
+// const arrayMap = require('./arrayMap.ts')
 
 describe('arrayMap', () => {
     describe('standard behavior', () => {
