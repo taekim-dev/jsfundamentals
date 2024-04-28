@@ -1,7 +1,7 @@
 function arrayMap(array, callback) {
     const res = [];
-    array.forEach(element => {
-        res.push(callback(element));
+    array.forEach((element, index) => {
+        res.push(callback(element, index));
     })
     return res;
 }
