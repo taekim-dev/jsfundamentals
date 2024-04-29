@@ -1,5 +1,5 @@
 
-function myFilter(array, callback, thisArg) {
+function arrayFilter(array, callback, thisArg) {
 
 
 
