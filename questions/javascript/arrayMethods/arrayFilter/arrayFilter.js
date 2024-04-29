@@ -2,7 +2,7 @@
 function arrayFilter(array, callback, thisArg) {
     let res = [];
     array.forEach(element => {
-        if(callback(element)){
+        if(callback.call(thisArg, element)){
             res.push(element);
         }
     })
