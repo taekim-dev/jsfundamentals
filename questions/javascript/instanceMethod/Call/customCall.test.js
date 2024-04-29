@@ -1,15 +1,15 @@
-const customCall = require('./customCall.js')
+require('./customCall.js')
 
 describe('customCall', () => {
     describe('standard behavior', () => {
         test('should set this to the specified object', () => {
-            const input = {
+            const obj = {
                 name : 'kim'
             }
-            function Name(){
+            function testFunction(){
                 return this.name;
             }
-            const result = Name.customCall(input)
+            const result = testFunction.customCall(obj)
             expect(result).toEqual('kim');
         })
 
