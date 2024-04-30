@@ -6,9 +6,16 @@ function containDuplicate(array){
     if (array.length < 2){
         return false;
     }
-    console.log(array);
-    const nonDuplicate = new Set(array);
-    return nonDuplicate.size !== array.length;
+    
+    const nonDuplicate = new Set();
+    for(const element of array){
+        if (nonDuplicate.has(element)){
+            return true;
+        }
+        nonDuplicate.add(element);
+    }
+
+    return false;
 }
 
 module.exports = containDuplicate;
