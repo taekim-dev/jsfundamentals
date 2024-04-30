@@ -10,14 +10,23 @@ describe('containDuplicate', () => {
         });
 
         test('applies to an array with a single duplicate value', () => {
+            const input = [1, 2, 3, 4, 5, 2];
+            const result = containDuplicate(input);
 
+            expect(result).toEqual(true);
         });
         
     })
 
     describe('edge case', () => {
-        test('apply to a large array with a single duplicate value', () => {
-
+        test('apply to a large array with no duplicate value', () => {
+            const input = [];
+            for(let i = 0; i < 1000; i++){
+                input[i] = i
+            }
+            const result = containDuplicate(input);
+            console.log(result);
+            expect(result).toEqual(false);
         });
     })
 })
