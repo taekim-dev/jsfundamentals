@@ -20,6 +20,15 @@ describe('customApply', () => {
             expect(result).toEqual(3);
         })
 
+        test('should handle calls with no arguments array', () => {
+            function greet() {
+                return `Hello, ${this.name}`;
+            }
+            const context = { name: 'Alice' };
+            const result = greet.customApply(context);
+            expect(result).toEqual('Hello, Alice');
+        });
+
     })
 
 })
