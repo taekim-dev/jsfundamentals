@@ -2,7 +2,7 @@ require('./customApply.js')
 
 describe('customApply', () => {
     describe('standard behavior', () => {
-        test('should set this to the specified array', () => {
+        test('should correctly invoke the function without a this context', () => {
             const input = [1, 2, 3];
             function sum(a, b, c) {
                 return a + b + c;
@@ -11,14 +11,14 @@ describe('customApply', () => {
             expect(result).toEqual(6);
         })
 
-        // test('should set this to the specified array', () => {
-        //     const input = [1, 2, 3]
-        //     function Sum(){
-        //         return this.reduce((acc, curr) => acc + curr, 0);
-        //     }
-        //     const result = Sum.customCall(input)
-        //     expect(result).toEqual(6);
-        // })
+        test('should correctly apply a custom this context', () => {
+            const input = [1, 2]
+            function Sum(a, b){
+                return a + b;
+            }
+            const result = Sum.customApply(Sum, input)
+            expect(result).toEqual(3);
+        })
 
     })
 
