@@ -25,8 +25,18 @@ describe('containDuplicate', () => {
                 input[i] = i
             }
             const result = containDuplicate(input);
-            console.log(result);
             expect(result).toEqual(false);
+        });
+
+        test('apply to a large array with one duplicate value', () => {
+            const input = [];
+            for(let i = 0; i < 1000; i++){
+                input[i] = i
+            }
+            input.push(0);
+
+            const result = containDuplicate(input);
+            expect(result).toEqual(true);
         });
     })
 })
