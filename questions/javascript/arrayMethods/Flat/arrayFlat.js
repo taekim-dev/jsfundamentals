@@ -1,5 +1,5 @@
-Array.prototype.arrayFlat = function(depth) {
-    if (this.length === 0) return [];
+Array.prototype.arrayFlat = function(depth = 1) {
+    if (this.length === 0 || depth === 0) return [...this];
     let res = [];
     if (depth === undefined || depth === 1) {
         for(const obj of this){
@@ -12,5 +12,5 @@ Array.prototype.arrayFlat = function(depth) {
             }
         }
     }
-    return res;
+    return res.arrayFlat(depth - 1);
 }

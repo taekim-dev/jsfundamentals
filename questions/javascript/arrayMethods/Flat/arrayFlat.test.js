@@ -27,5 +27,13 @@ describe('Function Name', () => {
             const res = arr.arrayFlat(Infinity);
             expect(res).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
         });
+
+        test('original array has no impact from the flat call', () => {
+            const origin = [1, 2, [3]];
+            const flattened = arr.arrayFlat();
+            flattened.push(4);
+            expect(origin).toEqual([1, 2, [3]]);
+            expect(flattened).toEqual([1, 2, 3, 4]);            
+        });
     })
 })
