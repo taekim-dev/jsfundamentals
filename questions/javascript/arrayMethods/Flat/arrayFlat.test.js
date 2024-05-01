@@ -30,7 +30,7 @@ describe('Function Name', () => {
 
         test('original array has no impact from the flat call', () => {
             const origin = [1, 2, [3]];
-            const flattened = arr.arrayFlat();
+            const flattened = origin.arrayFlat();
             flattened.push(4);
             expect(origin).toEqual([1, 2, [3]]);
             expect(flattened).toEqual([1, 2, 3, 4]);            
