@@ -1,4 +1,4 @@
-const arrayFlat = require('./arrayFlat.js')
+require('./arrayFlat.js')
 
 describe('Function Name', () => {
     describe('standard behavior', () => {

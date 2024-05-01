@@ -2,7 +2,7 @@ function methodName() {
 
 }
 
-// Function.prototype.methodName = function() {
+// Function(Array).prototype.methodName = function() {
 // }
 
 module.exports = methodName;
