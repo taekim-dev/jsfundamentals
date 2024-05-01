@@ -6,8 +6,15 @@
 // Return the maximum profit you can achieve from this transaction. 
 // If you cannot achieve any profit, return 0.
 
-function maxProfit(){
-    
+function maxProfit(prices){
+    if (prices.length === 0) return 0;
+    let minSoFar = Number.MAX_SAFE_INTEGER;
+    let maxProfit = 0;
+    for(const price of prices){
+        minSoFar = Math.min(price, minSoFar)
+        maxProfit = Math.max(price - minSoFar, maxProfit)
+    }
+    return maxProfit;
 }
 
-exports.module = maxProfit;
+module.exports = maxProfit;

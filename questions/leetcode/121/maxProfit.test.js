@@ -2,20 +2,19 @@ const maxProfit = require('./maxProfit.js')
 
 describe('maxProfit', () => {
     describe('standard behavior', () => {
-        // test('applies to empty array', () => {
-        //     const input = [];
-        //     const result = maxProfit(input)
+        test('applies to a stock that the prices changes', () => {
+            const input = [3, 1, 5, 9, 2];
+            const result = maxProfit(input)
 
-        //     expect(result).toEqual(0);
-        // });
+            expect(result).toEqual(8);
+        });
 
-        // test('applies to an array where the prices are', () => {
-        //     const input = [1, 2, 3, 4, 5, 2];
-        //     const result = maxProfit(input);
+        test('applies to a stock that the price decreases', () => {
+            const input = [5, 4, 3, 2, 1];
+            const result = maxProfit(input);
 
-        //     expect(result).toEqual(true);
-        // });
-        
+            expect(result).toEqual(0);
+        });
     })
 
     describe('edge case', () => {
