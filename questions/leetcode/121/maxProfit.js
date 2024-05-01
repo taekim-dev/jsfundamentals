@@ -8,13 +8,19 @@
 
 function maxProfit(prices){
     if (prices.length === 0) return 0;
-    let minSoFar = Number.MAX_SAFE_INTEGER;
-    let maxProfit = 0;
-    for(const price of prices){
-        minSoFar = Math.min(price, minSoFar)
-        maxProfit = Math.max(price - minSoFar, maxProfit)
+    let lowestPriceSeen = Number.MAX_SAFE_INTEGER;
+    let maximumProfit = 0;
+    for(const currentPrice of prices){
+        if (currentPrice < lowestPriceSeen) {
+            lowestPriceSeen = currentPrice;
+        }
+
+        const potentialProfit = currentPrice - lowestPriceSeen;
+        if (maximumProfit < potentialProfit) { 
+            maximumProfit = potentialProfit;
+        }
     }
-    return maxProfit;
+    return maximumProfit;
 }
 
 module.exports = maxProfit;
