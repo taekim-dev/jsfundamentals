@@ -7,7 +7,7 @@
 // If you cannot achieve any profit, return 0.
 
 function maxProfit(){
-
+    
 }
 
 exports.module = maxProfit;
