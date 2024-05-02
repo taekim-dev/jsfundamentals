@@ -11,4 +11,4 @@ function isValid(string){
 
 }
 
-module.exports = maxProfit;
+module.exports = isValid;
