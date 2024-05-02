@@ -8,18 +8,20 @@
 // Every close bracket has a corresponding open bracket of the same type.
 
 function isValid(string){
-    const ParenthesesMap = {
+    const bracketMap = {
         '(' : ')',
         '{' : '}',
         '[' : ']'
     }
     const stack = [];
-    for (let paren of string){
-        if (ParenthesesMap.hasOwnProperty(paren)){
-            stack.push(paren);
+    for (let char of string){
+        if (bracketMap[char]){
+            stack.push(char);
         } else {
-            const openParenthese = stack.pop();
-            if (paren !== ParenthesesMap[openParenthese]) {
+            if(stack.length === 0) return false;
+
+            const lastOpen = stack.pop();
+            if (char !== bracketMap[lastOpen]) {
                 return false;
             }
         }
