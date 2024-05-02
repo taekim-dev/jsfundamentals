@@ -1,3 +1,4 @@
+// It's difficult to implement this and read & understand
 Array.prototype.mySplice = function(startIndex, removeCount, ...items) {
     // Default startIndex to 0 if undefined, and handle negative index
     startIndex = startIndex ?? 0;
