@@ -15,8 +15,16 @@ function ListNode(val, next) {
  */
 var reverseList = function(head) {
     if (head.next === null) return head;
-    
-
+    let dummy;
+    let curr = head;
+    let next = head.next;
+    while(next){
+        dummy = next.next;
+        next.next = curr;
+        curr = next;
+        next = dummy
+    }
+    return curr;
 
 };
 
