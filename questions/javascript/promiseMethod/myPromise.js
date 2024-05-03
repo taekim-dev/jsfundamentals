@@ -1,0 +1,4 @@
+
+Promise.prototype.myPromise = function() {
+    
+}
