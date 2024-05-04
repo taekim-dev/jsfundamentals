@@ -5,7 +5,7 @@ function createLinkedList(values) {
     let head = new ListNode(values[0]);
     let current = head;
     for (let i = 1; i < values.length; i++) {
-        current = new ListNode(values[i]);
+        current.next = new ListNode(values[i]);
         current = current.next;
     }
     return head;
@@ -35,12 +35,30 @@ describe('Merge Two Sorted List', () => {
             const merged = mergeList(list1, list2)
             const expected = createLinkedList([1, 1, 3, 4, 5, 6]);
 
-            expect(merged).areEqual(expected);
+            expect(areEqual(merged, expected)).toBe(true);
         });
 
-        test('handle two complex unsorted lists', () => {
+        test('handle two large sorted linked lists', () => {
+            const values1 = [];
+            for(let i = 0; i < 100; i++){
+                values1.push(i);
+            }
+            const values2 = [];
+            for(let i = 100; i < 200; i++){
+                values2.push(i);
+            }
 
-            expect().toEqual();
+            const list1 = createLinkedList(values1);
+            const list2 = createLinkedList(values2);
+            const mergedList = mergeList(list1, list2);
+
+            const expected = [];
+            for(let i = 0; i < 200; i++){
+                expected.push(i);
+            }
+            const expectedList = createLinkedList(expected);
+
+            expect(areEqual(mergedList, expectedList)).toBe(true);
         });
     })
 
@@ -55,14 +73,12 @@ describe('Merge Two Sorted List', () => {
 
         test('handles the cases when one list is empty', () => {
             const list1 = null;
-            const node1 = new ListNode(1);
-            const node2 = new ListNode(2, node1);
-            const list2 = new ListNode(3, node2);
-
+            const list2 = createLinkedList([1, 2, 3])
             const merged = mergeList(list1, list2);
+            const expected = createLinkedList([1, 2, 3]);
 
             expect(merged.val).toEqual(1);
-            expect(merged.next).toEqual(node2);
+            expect(areEqual(merged, expected)).toBe(true);
         });
     })
 })
