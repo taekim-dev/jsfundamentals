@@ -6,12 +6,12 @@ test('myPromise resolves correctly', done => {
     })
 
     promise.then(value => {
-        expect(value.toBe('Success'));
+        expect(value).toBe('Success');
         done();
     })
 })
 
-test('MyPromise rejects correctly', done => {
+test('myPromise rejects correctly', done => {
     const promise = new myPromise((resolve, reject) => {
         setTimeout(() => reject('error'), 100);
     });
