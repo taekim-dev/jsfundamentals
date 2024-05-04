@@ -11,6 +11,22 @@ function createLinkedList(values) {
     return head;
 }
 
+function areEqual(list1, list2) {
+    let currNode1 = list1;
+    let currNode2 = list2;
+
+    while (currNode1 !== null && currNode2 !== null){
+        if (currNode1.val !== currNode2.val) {
+            return false;
+        }
+
+        currNode1 = currNode1.next;
+        currNode2 = currNode2.next;
+    }
+
+    return currNode1 === null && currNode2 === null;
+}
+
 describe('Merge Two Sorted List', () => {
     describe('standard behavior', () => {
         test('handle two sorted lists', () => {
@@ -19,7 +35,7 @@ describe('Merge Two Sorted List', () => {
             const merged = mergeList(list1, list2)
             const expected = createLinkedList([1, 1, 3, 4, 5, 6]);
 
-            expect(merged).toEqual(expected);
+            expect(merged).areEqual(expected);
         });
 
         test('handle two complex unsorted lists', () => {
