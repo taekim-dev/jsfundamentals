@@ -1,8 +1,28 @@
 const { mergeList, ListNode } = require('./MergeTwoSortedList.js')
 
+function createLinkedList(values) {
+    if (!values || values.length === 0) return null;
+    let head = new ListNode(values[0]);
+    let current = head;
+    for (let i = 1; i < values.length; i++) {
+        current = new ListNode(values[i]);
+        current = current.next;
+    }
+    return head;
+}
+
 describe('Merge Two Sorted List', () => {
     describe('standard behavior', () => {
-        test('description', () => {
+        test('handle two sorted lists', () => {
+            const list1 = createLinkedList([1, 3, 5]);
+            const list2 = createLinkedList([1, 4, 6]);
+            const merged = mergeList(list1, list2)
+            const expected = createLinkedList([1, 1, 3, 4, 5, 6]);
+
+            expect(merged).toEqual(expected);
+        });
+
+        test('handle two complex unsorted lists', () => {
 
             expect().toEqual();
         });
