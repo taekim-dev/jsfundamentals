@@ -1,44 +1,23 @@
-require('./myPromise.js')
+const myPromise = require('./myPromise.js')
 
-describe('Custom Promise', () => {
-    describe('standard behavior', () => {
-        test('resolve a valid function', async () => {
-            const log = () => "hello";
-            const res = await new MyPromise((resolve) => {
-                resolve(log());
-            });
-
-            expect(res).toEqual("hello");
-        });
-
-        test('resolve a valid function with timeout', async () => {
-            const log = () => {
-                return new myPromise((resolve) => {
-                    setTimeout(() => {
-                        resolve("hello");
-                    }, 1000)
-                })
-            }
-
-            const res = await log();
-            expect(res).toEqual("hello");
-        });
-
-        test('reject a valid function', () => {
-            expect().toEqual();
-        });
-
-        test('handles chaining one statement', () => {
-            expect().toEqual();
-        });
-
-        test('handles chaining multiple statements', () => {
-            expect().toEqual();
-        });
+test('myPromise resolves correctly', done => {
+    const promise = new myPromise(resolve => {
+        setTimeout(() => resolve('Success'), 100);
     })
 
-    describe('edge cases', () => {
-        test('description', () => {
-        });
+    promise.then(value => {
+        expect(value.toBe('Success'));
+        done();
+    })
+})
+
+test('MyPromise rejects correctly', done => {
+    const promise = new myPromise((resolve, reject) => {
+        setTimeout(() => reject('error'), 100);
+    });
+
+    promise.then(null, reason => {
+        expect(reason).toBe('error');
+        done();
     })
 })
