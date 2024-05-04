@@ -14,18 +14,19 @@ function ListNode(val, next) {
  * @return {ListNode}
  */
 var reverseList = function(head) {
-    if (head.next === null) return head;
-    let dummy;
+    if(head === null || !head.next) return head
+    
+    let prev = null;
     let curr = head;
-    let next = head.next;
-    while(next){
-        dummy = next.next;
-        next.next = curr;
-        curr = next;
-        next = dummy
-    }
-    return curr;
 
+    while(curr){
+        const next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+    }
+
+    return prev
 };
 
 module.exports = {
