@@ -10,8 +10,8 @@ function TreeNode(val, left, right) {
 }
 
 function invertTree(root){
-    if (!root || (!root.left && !root.right)) {
-        return root
+    if (!root) {
+        return null
     }
 
     const tempLeft = root.left;
