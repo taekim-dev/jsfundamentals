@@ -6,11 +6,19 @@
 function TreeNode(val, left, right) {
     this.val = (val === undefined ? 0 : val)
     this.left = (left === undefined ? null : left)
-    this.right = (rght === undefined ? null : right)
+    this.right = (right === undefined ? null : right)
 }
 
-function invertTree(tree){
+function invertTree(root){
+    if (!root || (!root.left && !root.right)) {
+        return root
+    }
 
+    const tempLeft = root.left;
+    root.left = invertTree(root.right);
+    root.right = invertTree(tempLeft);
+
+    return root;
 }
 
 module.exports = {
