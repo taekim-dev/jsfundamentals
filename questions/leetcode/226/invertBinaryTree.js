@@ -9,16 +9,39 @@ function TreeNode(val, left, right) {
     this.right = (right === undefined ? null : right)
 }
 
-function invertTree(root){
-    if (!root) {
-        return null
+
+// Recursive
+// function invertTree(root){
+//     if (!root) {
+//         return null
+//     }
+
+//     const tempLeft = root.left;
+//     root.left = invertTree(root.right);
+//     root.right = invertTree(tempLeft);
+
+//     return root;
+// }
+
+// Iterative
+function invertTree(root) {
+    if (!root) return null;
+
+    const queue = [root];
+    while (queue.length > 0) {
+        let curr = queue.shift();
+
+        let temp = curr.left;
+        curr.left = curr.right;
+        curr.right = temp;
+
+        if (curr.left) queue.push(curr.left)
+        if (curr.right) queue.push(curr.right)
+        
     }
 
-    const tempLeft = root.left;
-    root.left = invertTree(root.right);
-    root.right = invertTree(tempLeft);
-
     return root;
+
 }
 
 module.exports = {
