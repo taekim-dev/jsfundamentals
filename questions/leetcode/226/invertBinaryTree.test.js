@@ -1,4 +1,4 @@
-const invertTree = require('./invertBinaryTree.js')
+const { invertTree, TreeNode } = require('./invertBinaryTree.js')
 
 describe('invertTree', () => {
     describe('standard behavior', () => {
@@ -14,7 +14,18 @@ describe('invertTree', () => {
     })
 
     describe('edge case', () => {
-        test('', () => {
+        test('handles an empty tree', () => {
+            const tree = null;
+            const res = invertTree(tree);
+
+            expect(res).toEqual(tree);
+        });
+
+        test('handles a tree with no child', () => {
+            const tree = new TreeNode(0, null, null);
+            const res = invertTree(tree);
+
+            expect(res).toEqual(tree);
         });
 
     })
