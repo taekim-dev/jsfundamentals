@@ -51,5 +51,28 @@ describe('Deep Equal', () => {
             const res = deepEqual([1, 2, [3]], [1, 2, [3]])
             expect(res).toEqual(true);
         });
+
+        test('handles two nested objects equal', () => {
+            const obj1 = {
+                name : 'Kim',
+                country: 'US',
+                address: {
+                    state: 'Texas',
+                    zipCode: '7777'
+                }
+            }
+
+            const obj2 = {
+                name : 'Kim',
+                country: 'US',
+                address: {
+                    state: 'Texas',
+                    zipCode: '7777'
+                }
+            }
+
+            const res = deepEqual(obj1, obj2)
+            expect(res).toEqual(true);
+        });
     })
 })
