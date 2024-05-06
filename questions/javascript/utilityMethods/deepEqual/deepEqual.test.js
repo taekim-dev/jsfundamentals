@@ -1,6 +1,6 @@
 const deepEqual = require('./deepEqual.js')
 
-describe('Deep Clone', () => {
+describe('Deep Equal', () => {
     describe('standard behavior', () => {
         test('handles two numbers equal', () => {
             const res = deepEqual(1, 1)
@@ -13,11 +13,11 @@ describe('Deep Clone', () => {
         });
 
 
-        test('handles two bigInt unequal', () => {
+        test('handles two bigInt equal', () => {
             const bigNumber1 = 19393939393n;
             const bigNumber2 = BigInt(19393939393);
-            res = deepEqual
-            expect(res).toEqual(false);
+            const res = deepEqual(bigNumber1, bigNumber2)
+            expect(res).toEqual(true);
         });
 
         test('handles two simple arrays equal', () => {
@@ -45,6 +45,11 @@ describe('Deep Clone', () => {
         test('handles two different types unequal', () => {
             const res = deepEqual(1, "1")
             expect(res).toEqual(false);
+        });
+
+        test('handles two nested arrays equal', () => {
+            const res = deepEqual([1, 2, [3]], [1, 2, [3]])
+            expect(res).toEqual(true);
         });
     })
 })
