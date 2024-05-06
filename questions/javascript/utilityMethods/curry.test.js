@@ -1,4 +1,4 @@
-require('./methodName.js')
+require('./curry.js')
 
 describe('Test Curry Function', () => {
     describe('standard behavior', () => {
@@ -23,6 +23,15 @@ describe('Test Curry Function', () => {
             expect(resTwo).toEqual(4);
             expect(resThree).toEqual(6);
 
+        });
+
+        test('handles multi sequence calculations', () => {
+            const multiply = (a, b) => a * b;
+            const curriedMultiply = curry(multiply);
+            const multiplyByTwo = curriedMultiply(2);
+            const result = multiplyByTwo(3);
+        
+            expect(result).toEqual(6);
         });
     })
 
