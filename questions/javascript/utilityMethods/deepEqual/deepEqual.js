@@ -17,10 +17,12 @@ function deepEqual(a, b) {
         }
 
         for (let i = 0; i < a.length; i++) {
-            if (deepEqual(a[i]) !== a[b]) {
+            if (!deepEqual(a[i], b[i])) {
                 return false;
             }
         }
+
+        
 
         return true;
     }
