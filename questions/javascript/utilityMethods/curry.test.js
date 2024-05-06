@@ -4,7 +4,7 @@ describe('Test Curry Function', () => {
     describe('standard behavior', () => {
         test('handles a simple calculation', () => {
             const sum = (a, b) => a + b;
-            const curriedSum = curry(sum);
+            const curriedSum = sum.curry();
             const addTwo = curriedSum(2);
             const res = addTwo(3);
 
@@ -13,9 +13,9 @@ describe('Test Curry Function', () => {
 
         test('handles a multiple calculations', () => {
             const multiply = (a, b) => a * b;
-            const curriedSum = curry(multiply);
-            const multiplyTwo = curriedSum(2);
-            const multiplyThree = curriedSum(3);
+            const curriedMultiply = multiply.curry();
+            const multiplyTwo = curriedMultiply(2);
+            const multiplyThree = curriedMultiply(3);
 
             const resTwo = multiplyTwo(2);
             const resThree = multiplyThree(2);
@@ -27,7 +27,7 @@ describe('Test Curry Function', () => {
 
         test('handles multi sequence calculations', () => {
             const multiply = (a, b) => a * b;
-            const curriedMultiply = curry(multiply);
+            const curriedMultiply = multiply.curry();
             const multiplyByTwo = curriedMultiply(2);
             const result = multiplyByTwo(3);
         
