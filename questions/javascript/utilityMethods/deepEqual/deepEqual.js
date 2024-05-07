@@ -3,8 +3,16 @@ function deepEqual(a, b) {
         return false
     }
 
+    if (a === null) {
+        return b === null;
+    }
+
+    if (a === undefined) {
+        return b === undefined
+    }
+
     // First check primtive types
-    if (typeof a === "number" || typeof a === "bigint" || typeof a === "string") {
+    if (typeof a === "number" || typeof a === "bigint" || typeof a === "string" || typeof a === "symbol" || typeof a === "boolean") {
         return a === b
     }
 
@@ -26,8 +34,8 @@ function deepEqual(a, b) {
     }
     
     if (typeof a === 'object' && typeof b === 'object') {
-        const keysA = Object.keys(a);
-        const keysB = Object.keys(b);
+        const keysA = Object.keys(a).sort();
+        const keysB = Object.keys(b).sort();
 
         if (keysA.length !== keysB.length) {
             return false;
