@@ -24,10 +24,27 @@ describe('Deep Copy', () => {
             const copied = deepCopy(original);
             expect(original).toEqual(copied);
         });
+
+        test('handles array of objects copy', () => {
+            const original = [{ name: "Alice" }, { name: "Bob" }]
+            const copied = deepCopy(original);
+            expect(original).toEqual(copied);
+        });
     })
 
     describe('edge cases', () => {
-        test('description', () => {
+        test('handle a null value in objects', () => {
+            const original = { name: "james", spouse: null }
+            const copied = deepCopy(original);
+            expect(original).toEqual(copied);
         });
+
+        test('handle a undefined value in objects', () => {
+            const original = { name: "james", middleName: undefined }
+            const copied = deepCopy(original);
+            expect(original).toEqual(copied);
+        });
+
+        // Function, Date, Cycle...
     })
 })
