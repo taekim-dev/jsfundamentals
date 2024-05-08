@@ -1,13 +1,11 @@
-function debounce<F extends (...args: any[]) => void>(func: F, delay: number): (...args: Parameters<F>) => void {
-    let timer : NodeJS.Timeout;
-
-    return (...args: Parameters<F>) => {
-        clearTimeout(timer);
-
-        timer = setTimeout(() => {
-            func(...args);
-        }, delay)
-    }
-}
-
-
+function debounce(func: (...args: any[]) => void, delay: number): (...args: any[]) => void {
+    let timer: any;
+    return (...args: any[]) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func(...args);
+      }, delay);
+    };
+  }
+  export default debounce;
+  
