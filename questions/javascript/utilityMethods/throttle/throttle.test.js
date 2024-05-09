@@ -14,18 +14,20 @@ describe('Throttle Test', () => {
             expect(mockFunction).toHaveBeenCalledTimes(2);
         });
 
-        test('Allows a single call during the delay', () => {
+        test('Allows initial and post-delay calls only', () => {
             jest.useFakeTimers();
             const mockFunction = jest.fn();
         
             const throttled = throttle(mockFunction, 2);
             throttled();
-            throttled();
-            throttled();
-            throttled();
-            jest.advanceTimersByTime(3);
-            throttled();
+            throttled(); // Should be ignored
+            throttled(); // Should be ignored
+            throttled(); // Should be ignored
+            jest.advanceTimersByTime(2);
+            expect(mockFunction).toHaveBeenCalledTimes(1);
         
+            jest.advanceTimersByTime(1);
+            throttled();
             expect(mockFunction).toHaveBeenCalledTimes(2);
         });
     })
