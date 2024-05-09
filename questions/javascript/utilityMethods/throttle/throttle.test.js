@@ -33,7 +33,20 @@ describe('Throttle Test', () => {
     })
 
     describe('edge cases', () => {
-        test('description', () => {
+        test('Allows calls right at the moment the delay expires', () => {
+            jest.useFakeTimers();
+            const mockFunction = jest.fn();
+        
+            const throttled = throttle(mockFunction, 2);
+            throttled();
+            jest.advanceTimersByTime(2);
+            throttled();
+            jest.advanceTimersByTime(2);
+            throttled();
+            jest.advanceTimersByTime(2);
+            throttled();
+            jest.advanceTimersByTime(1);
+            expect(mockFunction).toHaveBeenCalledTimes(4);
         });
     })
 })
