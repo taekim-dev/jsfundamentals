@@ -1,11 +1,11 @@
 function throttle(Func, delay) {
-    let timerFlag = null
-    
+    let timerId = null;
+
     return function(...args) {
-        if (timerFlag === null) {
+        if(timerId === null) {
             Func.apply(this, args);
-            timerFlag = setTimeout(() => {
-                timerFlag = null
+            timerId = setTimeout(() => {
+                timerId = null;
             }, delay)
         }
     }
