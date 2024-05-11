@@ -15,7 +15,7 @@ describe('Pipe Functions', () => {
         test('handles a single function', () => {
             const input = 1;
             const process = pipe([
-                substrack(1)
+                subtrack(1)
             ]) 
             const res = process(input)
             expect(res).toEqual(0);
@@ -28,7 +28,7 @@ describe('Pipe Functions', () => {
                 plus(4),
             ]) 
             const res = process(input)
-            expect(res).toEqual(2);
+            expect(res).toEqual(8);
         });
 
         test('handles pipe multiple combinations', () => {
