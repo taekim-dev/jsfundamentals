@@ -1,11 +1,6 @@
 function pipe(funcs) {
     return function(arg) {
-        let res = arg;
-        while(funcs.length !== 0) {
-            currFunc = funcs.shift();
-            res = currFunc(res, arg)
-        }
-        return res;
+        return funcs.reduce((acc, currFunc) => currFunc(acc), arg)
     }
 }
 
