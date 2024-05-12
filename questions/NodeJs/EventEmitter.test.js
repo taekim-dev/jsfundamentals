@@ -63,7 +63,37 @@ describe('EventEmitter Test', () => {
     })
 
     describe('edge cases', () => {
-        test('description', () => {
-        });
+        test('handles the callbacks with an argument', () => {
+            const emitter = new EventEmitter();
+            let res = 0;
+            emitter.subscribe('event1', (x) => {
+                res = 99 + Number(x);
+            });
+        
+            emitter.subscribe('event2', (y) => {
+                res = res + Number(y);
+            });
+        
+            emitter.emit('event1', 1);
+            expect(res).toEqual(100);
+
+            emitter.emit('event2', 2);
+            expect(res).toEqual(102);
+        });   
+        
+        test('handles the multiple emit calls', () => {
+            const emitter = new EventEmitter();
+            let res = 0;
+            emitter.subscribe('event1', (x) => {
+                res = 99 + Number(x);
+            });
+        
+            emitter.subscribe('event1', (y) => {
+                res = res + Number(y);
+            });
+        
+            emitter.emit('event1', 1);
+            expect(res).toEqual(101);
+        });  
     })
 })
