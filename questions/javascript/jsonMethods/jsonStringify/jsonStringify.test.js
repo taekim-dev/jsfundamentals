@@ -29,7 +29,7 @@ describe('Json Stringify Test', () => {
         });
 
         test('handles a simple array', () => {
-            const input = [Number(1), new String("2"), new Boolean(true)]
+            const input = [Number(1), "2", true]
             const res = jsonStringify(input);
             const expectedOutput = '[1,"2",true]'; 
             expect(res).toEqual(expectedOutput);
