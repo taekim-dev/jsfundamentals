@@ -1,17 +1,16 @@
 function memo(func, resolver) {
-  
-    const store = {};
-    return function(...args){
-        const cacheKey = args.join('_');
-        if (cacheKey in store) {
-            return store[cacheKey];
+    const cache = new Map();
+
+    return function (...args) {
+        const cacheKey = resolver ? resolver(...args) : args.join('_');
+        if (cache.has(cacheKey)) {
+            return cache.get(cacheKey);
         } else {
-            const res = func(...args);
-            store[cacheKey] = res
+            const res = func (...args);
+            cache.set(cacheKey, res);
             return res;
         }
     }
-
 }
 
 
