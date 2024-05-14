@@ -16,14 +16,16 @@ describe('Memo (memoization) Test', () => {
 
         test('handles memoization for a complex function', () => {
             const complexFunc = jest.fn((a, b) => a * b + Math.sqrt(a + b))
-
             const memoed = memo(complexFunc);
+
+            const expected = complexFunc(3, 1);
+            complexFunc.mockClear();
 
             const res1 = memoed(3, 1)
             const res2 = memoed(3, 1)
 
-            expect(res1).toEqual(complexFunc(3, 1));
-            expect(res2).toEqual(complexFunc(3, 1));
+            expect(res1).toEqual(expected);
+            expect(res2).toEqual(expected);
             expect(complexFunc).toHaveBeenCalledTimes(1);
         });
 
