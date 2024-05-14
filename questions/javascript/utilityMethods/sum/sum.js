@@ -1,8 +1,18 @@
 function sum(arg) {
     const curr = arg;
-    return function(newArg) {
-        return curr + newArg;
+    
+    function innerSum(newArg) {
+        if (newArg === undefined) {
+            return curr;
+        }
+        return sum(curr + newArg)
     }
+
+    innerSum.valueOf = function () {
+        return curr;
+    };
+
+    return innerSum
 }
 
 module.exports = sum;
