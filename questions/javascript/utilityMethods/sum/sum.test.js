@@ -1,9 +1,19 @@
 const sum = require('./sum.js')
 
-describe('Function Name', () => {
+describe('Sum Test', () => {
     describe('standard behavior', () => {
-        test('description', () => {
-            expect().toEqual();
+        test('handles a single argument', () => {
+            const sum1 = sum(1);
+            res = sum1(2);
+            expect(res).toEqual(3);
+        });
+
+        test('handles chaining', () => {
+            const res = sum(1)(2)(3)
+            expect(res).toEqual(6);
+
+            const res2 = sum(-1)(4)(2)
+            expect(res).toEqual(5);
         });
     })
 
