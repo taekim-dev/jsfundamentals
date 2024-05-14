@@ -44,7 +44,16 @@ describe('Memo (memoization) Test', () => {
     })
 
     describe('edge cases', () => {
-        test('description', () => {
+        test('handles memoization with no arguments', () => {
+            const noArgs = jest.fn(() => 42);
+            const memoed = memo(noArgs);
+
+            const res1 = memoed();
+            const res2 = memoed();
+
+            expect(res1).toEqual(42);
+            expect(res2).toEqual(42);
+            expect(noArgs).toHaveBeenCalledTimes(1);
         });
     })
 })
