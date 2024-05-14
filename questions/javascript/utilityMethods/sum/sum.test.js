@@ -4,7 +4,7 @@ describe('Sum Test', () => {
     describe('standard behavior', () => {
         test('handles a single argument', () => {
             const sum1 = sum(1);
-            res = sum1(2);
+            const res = sum1(2);
             expect(res).toEqual(3);
         });
 
