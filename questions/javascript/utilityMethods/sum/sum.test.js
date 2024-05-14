@@ -15,6 +15,17 @@ describe('Sum Test', () => {
             const res2 = sum(-1)(4)(2)()
             expect(res2).toEqual(5);
         });
+
+        test('handles single argument and comparison', () => {
+            const sum1 = sum(1);
+            expect(sum1(2) == 3).toBe(true);
+            expect(sum1(3) == 4).toBe(true);
+        });
+        
+        test('handles multiple chained arguments and comparison', () => {
+            expect(sum(1)(2)(3) == 6).toBe(true);
+            expect(sum(5)(-1)(2) == 6).toBe(true);
+        });
     })
 
     describe('edge cases', () => {

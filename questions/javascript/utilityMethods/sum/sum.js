@@ -12,6 +12,10 @@ function sum(arg) {
         return curr;
     };
 
+    innerSum.toString = function () {
+        return String(curr);
+    };
+
     return innerSum
 }
 
