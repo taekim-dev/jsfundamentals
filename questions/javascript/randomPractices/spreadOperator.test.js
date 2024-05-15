@@ -1,6 +1,4 @@
 
-const sum = (...args) => args.reduce((acc, curr) => acc + curr, 0);
-const callWithSpread = (fn, ...args) => fn(...args);
 const collectAndSpread = (fn, ...args) => {
     const collectedArgs = args;
     return fn(...collectedArgs)
@@ -16,14 +14,20 @@ describe('Spread Operator with Function Calls', () => {
             expect(sum()).toBe(0);
         });
 
-        test('description', () => {
-            
-            expect().toEqual();
+        test('Call a function with Spread', () => {
+            const sum = (a, b, c) => a + b + c;
+            const args = [1, 2, 3];
+            expect(sum(...args)).toBe(6);
         });
 
-        test('description', () => {
+        test('function that calls another function with spread arguments', () => {
+            const callWithSpread = (fn, ...args) => fn(...args);
+            const sum = (a, b, c) => a + b + c;
             
-            expect().toEqual();
+            const args = [1, 2, 3];
+            const res = callWithSpread(sum, ...args);
+            
+            expect(res).toEqual(6);
         });
     })
 
