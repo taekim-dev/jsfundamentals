@@ -9,8 +9,8 @@ describe('Random Shuffle Test', () => {
             const varientString = varient.toString();
             const counter = [0, 0];
 
-            const callCount = 100;
-            const expectedCount = 100 / 2;
+            const callCount = 1000;
+            const expectedCount = callCount / 2;
             const tolerance = expectedCount * 0.05;
 
             for(let i = 0; i < callCount; i++) {
@@ -25,12 +25,11 @@ describe('Random Shuffle Test', () => {
                     return;
                 }
             }
-            
+
             for (let i = 0; i < 2; i++) {
                 expect(counter[i]).toBeGreaterThanOrEqual(expectedCount - tolerance);
                 expect(counter[i]).toBeLessThanOrEqual(expectedCount + tolerance);
             }
-            expect().toEqual();
         });
     })
 
