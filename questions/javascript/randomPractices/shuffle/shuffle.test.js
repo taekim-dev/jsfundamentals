@@ -31,6 +31,44 @@ describe('Random Shuffle Test', () => {
                 expect(counter[i]).toBeLessThanOrEqual(expectedCount + tolerance);
             }
         });
+        test('shuffle a longer array', () => {
+            const input = [1, 2, 3, 4];
+            const ITERATIONS = 100000;
+            const permutations = {};
+            
+            function generatePermutations(arr, size, n) {
+                if (size === 1) {
+                    permutations[arr.join(',')] = 0;
+                    return;
+                }
+                for (let i = 0; i < size; i++) {
+                    generatePermutations(arr, size - 1, n);
+                    if (size % 2 === 1) {
+                        [arr[0], arr[size - 1]] = [arr[size - 1], arr[0]];
+                    } else {
+                        [arr[i], arr[size - 1]] = [arr[size - 1], arr[i]];
+                    }
+                }
+            }
+            
+            generatePermutations(input.slice(), input.length, input.length);
+            
+            for (let i = 0; i < ITERATIONS; i++) {
+                const shuffled = shuffle(input);
+                const key = shuffled.join(',');
+                permutations[key] = (permutations[key] || 0) + 1;
+            }
+            
+            const expectedCount = ITERATIONS / Object.keys(permutations).length;
+            const tolerance = expectedCount * 0.05;
+            
+            for (let key in permutations) {
+                const count = permutations[key];
+                expect(count).toBeGreaterThanOrEqual(expectedCount - tolerance);
+                expect(count).toBeLessThanOrEqual(expectedCount + tolerance);
+            }
+        });
+        
     })
 
     describe('edge cases', () => {
