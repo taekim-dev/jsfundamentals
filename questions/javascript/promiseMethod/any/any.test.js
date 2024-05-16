@@ -8,7 +8,12 @@ describe('Promise any Test', () => {
     })
 
     describe('edge cases', () => {
-        test('description', () => {
+        test('reject when no iterable passed', () => {
+            const res = any([]);
+            return res.catch(error => {
+                expect(error).toBeInstanceOf(AggregateError);
+                expect(error.errors).toEqual([]);
+            });
         });
     })
 })
