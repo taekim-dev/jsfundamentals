@@ -3,11 +3,23 @@ const any = require('./any.js')
 describe('Promise any Test', () => {
     describe('standard behavior', () => {
         test('handles a single promise resolved', () => {
-            expect().toEqual();
+            const promise = new Promise((resolve) => {
+                resolve("Resolve Immediately");
+            });
+            const res = any([promise]);
+            return res.then(val => {
+                expect(val).toEqual("Resolve Immediately");
+            })
         });
 
         test('handles a single promise rejected', () => {
-            expect().toEqual();
+            const promise = Promise.reject(0);
+            const res = any([promise]);
+
+            return res.catch(error => {
+                expect(error).toBeInstanceOf(AggregateError);
+                expect(error.errors).toEqual([0]);
+            });
         });
 
         test('handles mutilple promises resolved', () => {
