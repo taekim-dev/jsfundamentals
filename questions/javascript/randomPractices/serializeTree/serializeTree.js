@@ -11,8 +11,24 @@ class Node {
  * @return {string}
  */
 function serialize(root) {
+    const values = [];
+    const queue = [root];
+    while (queue.length > 0) {
+        const currNode = queue.shift();
+        values.push(currNode.val);
 
+        if (queue.left !== null) {
+            queue.push(queue.left);
+        }
+        values.push(queue.left);
 
+        if(queue.right !== null) {
+            queue.push(queue.right);
+        }
+        values.push(queue.right);
+
+    }
+    JSON.stringify(values);
 }
   
 /**
@@ -20,7 +36,9 @@ function serialize(root) {
  * @return {Node}
  */
 function deserialize(str) {
+    const values = JSON.parse(str);
 
+    
 }
   
 function isIdentical(tree1, tree2) {
