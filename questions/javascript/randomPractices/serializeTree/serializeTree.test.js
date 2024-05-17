@@ -3,6 +3,36 @@ const { serialize, deserialize, Node, isIdentical } = require('./serializeTree.j
 
 // [1,2,3,4,null,null,5,6,7,8,null,null,null,null,9]
 
+// function createBinaryTree(array) {
+//     if (array.length === 0) return null;
+
+//     const root = new Node(array[0]);
+//     const queue = [root];
+//     let i = 1;
+//     while(i < array.length) {
+//         const currNode = queue.shift();
+
+//         if (array[i] !== null) {
+//             const leftNode = new Node(array[i]);
+//             currNode.left = new Node(array[i]);
+//             queue.push(leftNode);
+//         }
+
+//         i++;
+
+//         if (i < array.length && array[i]) {
+//             const rightNode = new Node(array[i]);
+//             currNode.right = rightNode;
+//             queue.push(rightNode);
+//             i++;
+//         }
+//     }
+
+//     return root;
+// }
+
+
+
 function createBinaryTree (array) {
     if (array.length === 0) return null;
     const root = new Node(array[0]);
@@ -32,17 +62,14 @@ function createBinaryTree (array) {
 describe('Serialize and Deserialize Binary Tree', () => {
   describe('standard behavior', () => {
     test('serialize a simple tree', () => {
-      const root = new Node(1);
-      const left = new Node(2);
-      const right = new Node(3);
-      root.left = left;
-      root.right = right;
 
-      const serializedTree = serialize(root);
+      const tree = createBinaryTree([1, 2, 3]);
+
+      const serializedTree = serialize(tree);
       expect(typeof serializedTree).toBe('string');
 
       const deserializedTree = deserialize(serializedTree);
-      expect(isIdentical(root, deserializedTree)).toBe(true);
+      expect(isIdentical(tree, deserializedTree)).toBe(true);
     });
 
     test('serialize a simple tree with null values', () => {
