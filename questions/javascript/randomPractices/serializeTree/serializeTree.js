@@ -15,33 +15,24 @@ function serialize(root) {
     const queue = [root];
     while (queue.length > 0) {
         const currNode = queue.shift();
-        values.push(currNode.val);
-
-        if (queue.left !== null) {
-            queue.push(queue.left);
+        if (currNode !== null) {
+            values.push(currNode.value);
+            queue.push(currNode.left);
+            queue.push(currNode.right);
+        } else {
+            values.push(null);
         }
-        values.push(queue.left);
-
-        if(queue.right !== null) {
-            queue.push(queue.right);
-        }
-        values.push(queue.right);
-
     }
-    JSON.stringify(values);
+    return JSON.stringify(values);
 }
   
-/**
- * @param {string} str
- * @return {Node}
- */
 function deserialize(str) {
     const values = JSON.parse(str);
     if (values.length === 0) return null;
 
     const root = new Node(values[0]);
     const queue = [root];
-    const i = 1;
+    let i = 1;
     while (i < values.length) {
         const currNode = queue.shift();
 
@@ -52,8 +43,7 @@ function deserialize(str) {
 
         i++;
 
-
-        if (values[i] !== null && i < values.length){
+        if (i < values.length && values[i] !== null){
             currNode.right = new Node(values[i]);
             queue.push(currNode.right);
         }
@@ -62,49 +52,23 @@ function deserialize(str) {
     }
 
     return root;
-
 }
   
 function isIdentical(tree1, tree2) {
-    if (tree1.val === null && tree2.val === null) {
+    if (tree1 === null && tree2 === null) {
         return true;
     }
 
-    if (tree1.val === null || tree2.val === null) {
+    if (tree1 === null || tree2 === null) {
         return false;
     }
 
-    if (tree1.val === tree2.val) {
+    if (tree1.value === tree2.value) {
         return isIdentical(tree1.left, tree2.left) && isIdentical(tree1.right, tree2.right)
     }
 
     return false;
 }
-
-// function isIdentical(tree1, tree2) {
-//     const queue1 = [tree1]
-//     const queue2 = [tree2]
-
-//     while(queue1.length > 0 && queue2.length > 0) {
-//         const curr1 = queue1.shift();
-//         const curr2 = queue2.shift();
-
-//         if (curr1.val !== curr2.val) {
-//             return false;
-//         }
-
-//         if (curr1.left !== null && curr2.left !== null){
-//             queue1.push(curr1.left);
-//             queue2.push(curr2.right);
-//         } 
-//         if (curr1.right !== null && curr2.right !== null){
-//             queue1.push(curr1.right);
-//             queue2.push(curr2.right);
-//         } 
-//     }
-
-//     return true;
-// }
   
 module.exports = {
     Node,
