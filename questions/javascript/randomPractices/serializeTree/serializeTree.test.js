@@ -1,39 +1,6 @@
 const { serialize, deserialize, Node, isIdentical } = require('./serializeTree.js');
 
-
-// [1,2,3,4,null,null,5,6,7,8,null,null,null,null,9]
-
-// function createBinaryTree(array) {
-//     if (array.length === 0) return null;
-
-//     const root = new Node(array[0]);
-//     const queue = [root];
-//     let i = 1;
-//     while(i < array.length) {
-//         const currNode = queue.shift();
-
-//         if (array[i] !== null) {
-//             const leftNode = new Node(array[i]);
-//             currNode.left = new Node(array[i]);
-//             queue.push(leftNode);
-//         }
-
-//         i++;
-
-//         if (i < array.length && array[i]) {
-//             const rightNode = new Node(array[i]);
-//             currNode.right = rightNode;
-//             queue.push(rightNode);
-//             i++;
-//         }
-//     }
-
-//     return root;
-// }
-
-
-
-function createBinaryTree (array) {
+function createBinaryTree(array) {
     if (array.length === 0) return null;
     const root = new Node(array[0]);
     const queue = [root];
@@ -56,13 +23,11 @@ function createBinaryTree (array) {
     }
 
     return root;
-
 }
 
 describe('Serialize and Deserialize Binary Tree', () => {
   describe('standard behavior', () => {
     test('serialize a simple tree', () => {
-
       const tree = createBinaryTree([1, 2, 3]);
 
       const serializedTree = serialize(tree);
@@ -70,6 +35,10 @@ describe('Serialize and Deserialize Binary Tree', () => {
 
       const deserializedTree = deserialize(serializedTree);
       expect(isIdentical(tree, deserializedTree)).toBe(true);
+
+      // Additional check for deserialized tree's serialization
+      const reSerializedTree = serialize(deserializedTree);
+      expect(serializedTree).toEqual(reSerializedTree);
     });
 
     test('serialize a simple tree with null values', () => {
@@ -84,6 +53,10 @@ describe('Serialize and Deserialize Binary Tree', () => {
 
       const deserializedTree = deserialize(serializedTree);
       expect(isIdentical(root, deserializedTree)).toBe(true);
+
+      // Additional check for deserialized tree's serialization
+      const reSerializedTree = serialize(deserializedTree);
+      expect(serializedTree).toEqual(reSerializedTree);
     });
 
     test('serialize a complex tree', () => {
