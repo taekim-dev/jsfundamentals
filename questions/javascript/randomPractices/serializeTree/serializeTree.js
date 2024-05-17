@@ -37,8 +37,32 @@ function serialize(root) {
  */
 function deserialize(str) {
     const values = JSON.parse(str);
+    if (values.length === 0) return null;
 
-    
+    const root = new Node(values[0]);
+    const queue = [root];
+    const i = 1;
+    while (i < values.length) {
+        const currNode = queue.shift();
+
+        if (values[i] !== null){
+            currNode.left = new Node(values[i]);
+            queue.push(currNode.left);
+        } 
+
+        i++;
+
+
+        if (values[i] !== null && i < values.length){
+            currNode.right = new Node(values[i]);
+            queue.push(currNode.right);
+        }
+
+        i++;
+    }
+
+    return root;
+
 }
   
 function isIdentical(tree1, tree2) {
