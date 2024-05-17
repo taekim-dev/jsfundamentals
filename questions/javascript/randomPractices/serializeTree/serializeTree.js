@@ -28,7 +28,7 @@ function serialize(root) {
   
 function deserialize(str) {
     const values = JSON.parse(str);
-    if (values.length === 0) return null;
+    if (values.length === 0 || values[0] === null) return null;
 
     const root = new Node(values[0]);
     const queue = [root];

@@ -85,12 +85,12 @@ describe('Serialize and Deserialize Binary Tree', () => {
 
   describe('edge cases', () => {
     test('serialize an empty tree', () => {
-      const root = null;
-      const serializedTree = serialize(root);
-      expect(serializedTree).toBe('null');
-
-      const deserializedTree = deserialize(serializedTree);
-      expect(deserializedTree).toBe(root);
+        const root = null;
+        const serializedTree = serialize(root);
+        expect(serializedTree).toBe('[null]');
+  
+        const deserializedTree = deserialize(serializedTree);
+        expect(deserializedTree).toBe(null);
     });
   });
 });
