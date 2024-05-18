@@ -9,7 +9,7 @@ describe('Object Assign Test', () => {
             const assignedTarget = objectAssign(target, source);
             expect(assignedTarget).toEqual(target);
             expect(assignedTarget.name).toEqual("Kim");
-            expect(assignedTarget.age).toEqual("30");
+            expect(assignedTarget.age).toEqual(30);
             expect(assignedTarget.country).toEqual("US");
 
         });
@@ -31,6 +31,7 @@ describe('Object Assign Test', () => {
                 name: "Kim", 
                 age: 30,
                 address : {
+                    street : "broad way",
                     zipcode: "10001",
                     status : {
                         visa: "O-1"
@@ -43,6 +44,7 @@ describe('Object Assign Test', () => {
             expect(assignedTarget.name).toEqual("Kim");
             expect(assignedTarget.age).toEqual(30);
             expect(assignedTarget.address.country).toEqual("US");
+            expect(target.address.street).toEqual("broad way");
             expect(target.address.zipcode).toEqual("10001");
             expect(target.address.status.visa).toEqual("O-1");
 
