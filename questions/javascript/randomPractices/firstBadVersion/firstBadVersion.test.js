@@ -14,7 +14,7 @@ describe('First Bad Version Test', () => {
             const isBad = (x) => x % 2 === 0;
             const badVersion = firstBadVersion(isBad);
             const res = badVersion(3);
-            expect(res).toEqual(1);
+            expect(res).toEqual(2);
         });
 
         test('handles when bad version with a complex input', () => {
