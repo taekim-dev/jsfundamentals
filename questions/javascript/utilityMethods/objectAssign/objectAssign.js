@@ -4,12 +4,10 @@ function objectAssign(target, source) {
 
     const sourceKeys = Object.keys(source);
     sourceKeys.forEach(key => {
-        if (key in target) {
-            if (typeof target[key] === 'object') {
-                target[key] = objectAssign(target[key], source[key]);
-            } else {
-                target[key] = source[key];
-            }
+        if (key in target && typeof target[key] === 'object') {
+            target[key] = objectAssign(target[key], source[key]);
+        } else {
+            target[key] = source[key];
         }
     })
     return target;
