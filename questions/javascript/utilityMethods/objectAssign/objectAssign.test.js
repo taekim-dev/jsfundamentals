@@ -73,5 +73,25 @@ describe('Object Assign Test', () => {
             expect(target.a).toEqual(1);
             expect(assignedTarget.b).toEqual(2);
         });
+
+        test('handles arrays', () => {
+            const target = { a: [1, 2, 3], b: { c: 3 } };
+            const source = { a: [4, 5, 6] };
+            const assignedTarget = objectAssign(target, source);
+
+            expect(target).toEqual(assignedTarget);
+            expect(target.a).toEqual([4, 5, 6]);
+            expect(assignedTarget.b.c).toEqual(3);
+        });
+
+        test('handles nested objects', () => {
+            const target = { a: { b: { c: 1 } } };
+            const source = { a: { b: { d: 2 } } };
+            const assignedTarget = objectAssign(target, source);
+
+            expect(target).toEqual(assignedTarget);
+            expect(target.a.b.c).toEqual(1);
+            expect(target.a.b.d).toEqual(2);
+        });
     })
 })
