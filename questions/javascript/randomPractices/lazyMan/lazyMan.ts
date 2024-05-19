@@ -1,14 +1,13 @@
 interface Laziness {
-  sleep: (time: number) => Laziness
-  sleepFirst: (time: number) => Laziness
-  eat: (food: string) => Laziness
+  sleep: (time: number) => Laziness;
+  sleepFirst: (time: number) => Laziness;
+  eat: (food: string) => Laziness;
 }
 
-function lazyMan(name: string, logFn: (log: string) => void) : Laziness{
-  
-  const tasks : Function[] = [];
-  
-  function next() : void {
+function lazyMan(name: string, logFn: (log: string) => void): Laziness {
+  const tasks: Array<() => void> = [];
+
+  function next(): void {
     const task = tasks.shift();
     if (task) task();
   }
@@ -16,42 +15,41 @@ function lazyMan(name: string, logFn: (log: string) => void) : Laziness{
   tasks.push(() => {
     logFn(`Hi, I'm ${name}`);
     next();
-  })
+  });
 
-  const lazyiness : Laziness = {
+  const laziness: Laziness = {
     sleep: (time: number) => {
       tasks.push(() => {
         setTimeout(() => {
           logFn(`Slept for ${time} seconds`);
           next();
         }, time * 1000);
-      })
-      return lazyiness;
+      });
+      return laziness;
     },
 
     sleepFirst: (time: number) => {
       tasks.unshift(() => {
         setTimeout(() => {
-          logFn(`Slept for ${time} seconds`);
+          logFn(`Slept first for ${time} seconds`);
           next();
         }, time * 1000);
-      })
-      return lazyiness;
+      });
+      return laziness;
     },
 
-    eat: (food: String) => {
+    eat: (food: string) => {
       tasks.push(() => {
         logFn(`Eating ${food}`);
-      })
-      return lazyiness;
+        next();
+      });
+      return laziness;
     }
-  }
+  };
 
   setTimeout(next, 0);
 
-  return lazyiness;
-
+  return laziness;
 }
 
-module.exports = lazyMan;
-
+export default lazyMan;
