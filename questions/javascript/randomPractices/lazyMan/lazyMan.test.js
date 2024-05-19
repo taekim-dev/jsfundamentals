@@ -14,8 +14,8 @@ describe('Lazy Man test', () => {
 
     describe('standard behavior', () => {
         test('LazyMan sleeps only', (done) => {
-            const lm = lazyMan("Kim", console.log);
-            lm.sleep(10);
+            const lazyMan = lazyMan("Kim", console.log);
+            lazyMan.sleep(10);
 
             setTimeout(() => {
                 expect(logSpy).toHaveBeenCalledWith('Hi, I\'m Kim');
@@ -25,8 +25,8 @@ describe('Lazy Man test', () => {
         });
 
         test('LazyMan eats and sleeps', (done) => {
-            const lm = lazyMan("Kim", console.log);
-            lm.eat("apple").sleep(5);
+            const lazyMan = lazyMan("Kim", console.log);
+            lazyMan.eat("apple").sleep(5);
 
             setTimeout(() => {
                 expect(logSpy).toHaveBeenCalledWith('Hi, I\'m Kim');
@@ -37,8 +37,8 @@ describe('Lazy Man test', () => {
         });
 
         test('LazyMan sleepFirst then eats and sleeps', (done) => {
-            const lm = lazyMan("Kim", console.log);
-            lm.sleepFirst(2).eat("banana").sleep(3);
+            const lazyMan = lazyMan("Kim", console.log);
+            lazyMan.sleepFirst(2).eat("banana").sleep(3);
 
             setTimeout(() => {
                 expect(logSpy).toHaveBeenCalledWith('Slept first for 2 seconds');
@@ -52,7 +52,7 @@ describe('Lazy Man test', () => {
 
     describe('edge cases', () => {
         test('LazyMan does nothing', (done) => {
-            const lm = lazyMan("Kim", console.log);
+            const lazyMan = lazyMan("Kim", console.log);
 
             setTimeout(() => {
                 expect(logSpy).toHaveBeenCalledWith('Hi, I\'m Kim');
@@ -61,8 +61,8 @@ describe('Lazy Man test', () => {
         });
 
         test('LazyMan sleepFirst multiple times randomly', (done) => {
-            const lm = lazyMan("Kim", console.log);
-            lm.sleepFirst(1).sleepFirst(2).eat("sandwich");
+            const lazyMan = lazyMan("Kim", console.log);
+            lazyMan.sleepFirst(1).eat("sandwich").sleepFirst(2);
 
             setTimeout(() => {
                 expect(logSpy).toHaveBeenCalledWith('Slept first for 2 seconds');
