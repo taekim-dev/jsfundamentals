@@ -1,4 +1,4 @@
-const lazyMan = require('./lazyMan.js');
+const LazyMan = require('./lazyMan.js');
 
 describe('Lazy Man test', () => {
 
@@ -14,7 +14,7 @@ describe('Lazy Man test', () => {
 
     describe('standard behavior', () => {
         test('LazyMan sleeps only', (done) => {
-            const lazyMan = lazyMan("Kim", console.log);
+            const lazyMan = LazyMan("Kim", console.log);
             lazyMan.sleep(10);
 
             setTimeout(() => {
@@ -25,7 +25,7 @@ describe('Lazy Man test', () => {
         });
 
         test('LazyMan eats and sleeps', (done) => {
-            const lazyMan = lazyMan("Kim", console.log);
+            const lazyMan = LazyMan("Kim", console.log);
             lazyMan.eat("apple").sleep(5);
 
             setTimeout(() => {
@@ -37,7 +37,7 @@ describe('Lazy Man test', () => {
         });
 
         test('LazyMan sleepFirst then eats and sleeps', (done) => {
-            const lazyMan = lazyMan("Kim", console.log);
+            const lazyMan = LazyMan("Kim", console.log);
             lazyMan.sleepFirst(2).eat("banana").sleep(3);
 
             setTimeout(() => {
@@ -52,7 +52,7 @@ describe('Lazy Man test', () => {
 
     describe('edge cases', () => {
         test('LazyMan does nothing', (done) => {
-            const lazyMan = lazyMan("Kim", console.log);
+            const lazyMan = LazyMan("Kim", console.log);
 
             setTimeout(() => {
                 expect(logSpy).toHaveBeenCalledWith('Hi, I\'m Kim');
@@ -61,7 +61,7 @@ describe('Lazy Man test', () => {
         });
 
         test('LazyMan sleepFirst multiple times randomly', (done) => {
-            const lazyMan = lazyMan("Kim", console.log);
+            const lazyMan = LazyMan("Kim", console.log);
             lazyMan.sleepFirst(1).eat("sandwich").sleepFirst(2);
 
             setTimeout(() => {
