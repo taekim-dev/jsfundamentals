@@ -13,8 +13,20 @@ type AsyncFunc = (
  * @return {(callback: Callback) => void}
  */
 function sequence(funcs){
-    // your code here
-  }
+  return function (callback, initialValue) {
+    let index = 0;
+
+    function next(error, data) {
+      if (error || index === funcs.length) {
+        callback(error, data);
+      } else {
+        const func = funcs[index++];
+        func(next, data);
+      }
+    }
+    next (null, initialValue)
+  }  
+}
 
 module.exports = sequence;
 
