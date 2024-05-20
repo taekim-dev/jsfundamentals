@@ -50,7 +50,7 @@ describe('Sequence Test', () => {
       noOps((error, data) => {
         expect(data).toBeUndefined();
         done();
-      }, 1);
+      });
     });
 
     test('handles an error in the async function', (done) => {
