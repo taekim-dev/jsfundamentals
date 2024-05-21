@@ -1,9 +1,9 @@
-function methodName() {
-
-}
-
-// Function(Array).prototype.methodName = function() {
-// }
-
-module.exports = methodName;
-
+/**
+ * @param {any} data
+ * @param {Object} command
+ */
+function update(data, command) {
+    // your code here
+  }
+  
+  
