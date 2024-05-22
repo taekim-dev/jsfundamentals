@@ -18,6 +18,8 @@ describe('Update (Immutability helper) Test', () => {
       expect(newArr.length).toEqual(4);
       expect(newArr[0]).toEqual(2);
       expect(newArr[1]).toEqual(2);
+      expect(newArr[2]).toEqual(3);
+      expect(newArr[3]).toEqual(4);
       expect(arr).toEqual([1, 2, 3, 4]);
     });
 
