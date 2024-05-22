@@ -14,9 +14,13 @@ function update(data, command) {
                     result.push(...command[key]);
                 }
             } else if (key === 'set') {
-
+                if (Array.isArray(result)) {
+                    result[Number(key)] = command[key];
+                } else {
+                    return command[key];
+                }
             } else if (key === 'merge') {
-                
+
             }
 
             if(key === '$apply') {
