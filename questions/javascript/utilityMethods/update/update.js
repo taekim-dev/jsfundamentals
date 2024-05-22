@@ -13,7 +13,20 @@ function update(data, command) {
                 } else {
                     result.push(...command[key]);
                 }
+            } else if (key === 'set') {
+
+            } else if (key === 'merge') {
+                
             }
+
+            if(key === '$apply') {
+                if (typeof command[key] !== 'function') {
+                    throw new Error('$apply only applies to functions')
+                } else {
+                    result[key] = update(result[key], command[key]);
+                }
+            }
+            //const newArr = update(arr, { 0: { $apply: (item) => item * 2 } });
         }
     }
 
