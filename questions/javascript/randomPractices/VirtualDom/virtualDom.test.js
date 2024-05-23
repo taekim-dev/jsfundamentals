@@ -1,4 +1,9 @@
 const { virtualize, render } = require('./virtualDom.js')
+const { JSDOM } = require('jsdom');
+
+const { window } = new JSDOM('<!DOCTYPE html><html><body></body></html>');
+global.document = window.document;
+global.Node = window.Node;
 
 test('virtualize: converts a simple DOM element to an object', () => {
   document.body.innerHTML = '<div><h1> this is </h1><p class="paragraph"> a <button> button </button> from <a href="https://bfe.dev"><b>BFE</b>.dev</a></p></div>';
