@@ -4,7 +4,7 @@
  * @return {number[]}
  */
 var productExceptSelf = function(nums) {
-    return nums;
+    
 };
 
 const nums1 = [1, 2, 3, 4];
@@ -15,6 +15,9 @@ const nums2 = [-1, 1, 0, -3, 3];
 const res2 = productExceptSelf(nums1);
 const expected2 = [0,0,9,0,0];
 
+const nums3 = [1, 1, 1, 1, 1];
+const res3 = productExceptSelf(nums1);
+const expected3 = [1, 1, 1, 1, 1];
 
 function checkMismatch(expected, res) {
     expected.forEach((num, i) => {
@@ -26,3 +29,4 @@ function checkMismatch(expected, res) {
 
 checkMismatch(expected1, res1);
 checkMismatch(expected2, res2);
+checkMismatch(expected3, res3);
