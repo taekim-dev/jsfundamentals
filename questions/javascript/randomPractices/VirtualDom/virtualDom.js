@@ -3,7 +3,9 @@
  * @return {object} object literal presentation
  */
 function virtualize(element) {
-  // your code here
+  if (!element) return null;
+
+
 }
 
 
@@ -12,7 +14,9 @@ function virtualize(element) {
  * @return {HTMLElement} 
  */
 function render(obj) {
-  // your code here
+  if (typeof obj === 'string') {
+    return document.createTextNode(obj);
+  }
 }
 
 
