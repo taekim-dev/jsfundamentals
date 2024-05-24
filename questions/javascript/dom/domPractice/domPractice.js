@@ -13,5 +13,14 @@ function createAndAppendElement(tagName, textContent, parent) {
     return newElement;
 }
 
+/**
+ * Modifies an attribute of the specified element.
+ * @param {HTMLElement} element
+ * @param {string} attributeName
+ * @param {string} attributeValue
+ */
+function modifyElementAttribute(element, attributeName, attributeValue) {
+    element.setAttribute(attributeName, attributeValue);
+}
 
-module.exports = { createAndAppendElement };
+module.exports = { createAndAppendElement, modifyElementAttribute };
