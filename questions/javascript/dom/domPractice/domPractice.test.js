@@ -1,5 +1,5 @@
 import { JSDOM } from 'jsdom';
-const { createAndAppendElement, modifyElementAttribute, addClickListener } = require('./domPractice.js')
+const { createAndAppendElement, modifyElementAttribute, addClickListener, findChildByClass } = require('./domPractice.js')
 
 const { window } = new JSDOM('<!DOCTYPE html><html><body></body></html>');
 global.document = window.document;
@@ -31,5 +31,10 @@ test('Add a click event listener to an element', () => {
 })
 
 test('Find a child element by class name', () => {
+    document.body.innerHTML = '<div><span class="test-class">Hello</span></div>';
+    const parent = document.querySelector('div');
+    const child = findChildByClass(parent, 'test-class');
 
+    expect(child).not.toBeNull();
+    expect(child.textContent).toBe('Hello');
 })

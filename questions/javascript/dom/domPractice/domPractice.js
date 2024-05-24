@@ -39,4 +39,5 @@ export function addClickListener(element, callback) {
  * @return {HTMLElement|null}
  */
 export function findChildByClass(parent, className) {
+    return parent.querySelector(`.${className}`);
 }
