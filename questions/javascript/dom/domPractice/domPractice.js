@@ -29,6 +29,7 @@ export function modifyElementAttribute(element, attributeName, attributeValue) {
  * @param {Function} callback
  */
 export function addClickListener(element, callback) {
+    element.addEventListener('click', callback);
 }
 
 /**

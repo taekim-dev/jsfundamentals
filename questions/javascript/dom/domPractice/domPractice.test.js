@@ -1,5 +1,5 @@
 import { JSDOM } from 'jsdom';
-const { createAndAppendElement, modifyElementAttribute } = require('./domPractice.js')
+const { createAndAppendElement, modifyElementAttribute, addClickListener } = require('./domPractice.js')
 
 const { window } = new JSDOM('<!DOCTYPE html><html><body></body></html>');
 global.document = window.document;
@@ -21,9 +21,15 @@ test('Modifies an element\'s attribute', () => {
 })
 
 test('Add a click event listener to an element', () => {
+    const element = document.createElement('button');
+    const mockCallback = jest.fn();
 
+    addClickListener(element, mockCallback);
+    element.click();
+
+    expect(mockCallback).toHaveBeenCalled();
 })
 
 test('Find a child element by class name', () => {
-    
+
 })
