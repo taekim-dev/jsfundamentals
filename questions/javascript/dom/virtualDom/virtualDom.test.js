@@ -1,5 +1,5 @@
 const { virtualize, render } = require('./virtualDom.js')
-const { JSDOM } = require('jsdom');
+import { JSDOM } from 'jsdom';
 
 const { window } = new JSDOM('<!DOCTYPE html><html><body></body></html>');
 global.document = window.document;

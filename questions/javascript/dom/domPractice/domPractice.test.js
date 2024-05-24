@@ -1,4 +1,5 @@
-const { JSDOM } = require('jsdom');
+import { JSDOM } from 'jsdom';
+const { createAndAppendElement } = require('./domPractice.js')
 
 const { window } = new JSDOM('<!DOCTYPE html><html><body></body></html>');
 global.document = window.document;

@@ -12,3 +12,6 @@ function createAndAppendElement(tagName, textContent, parent) {
     parent.appendChild(newElement);
     return newElement;
 }
+
+
+module.exports = { createAndAppendElement };
