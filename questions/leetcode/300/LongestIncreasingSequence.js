@@ -3,7 +3,17 @@
  * @return {number}
  */
 var lengthOfLIS = function(nums) {
-    
+    if (nums.length < 2) { return nums.length };
+
+    const dp = new Array(nums.length).fill(1);
+    for(let i = 1; i < nums.length; i++) {
+        for(let j = 0; j < i; j++) {
+            if(nums[j] < nums[i]) {
+                dp[i] = Math.max(dp[i], dp[j] + 1);
+            }
+        }
+    }
+    return Math.max(...dp);
 };
 
 
@@ -19,7 +29,6 @@ const input3 = [7,7,7,7,7,7,7]
 const res3 = lengthOfLIS(input3);
 console.log(res3 === 1)
 
-
 const input4 = [9, 8, 7, 6]
 const res4 = lengthOfLIS(input4);
-console.log(res4 === 0)
+console.log(res4 === 1)
