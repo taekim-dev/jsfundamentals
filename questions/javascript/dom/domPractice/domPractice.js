@@ -6,7 +6,7 @@
  * @return {HTMLElement}
  */
 
-function createAndAppendElement(tagName, textContent, parent) {
+export function createAndAppendElement(tagName, textContent, parent) {
     const newElement = document.createElement(tagName);
     newElement.textContent = textContent;
     parent.appendChild(newElement);
@@ -19,8 +19,23 @@ function createAndAppendElement(tagName, textContent, parent) {
  * @param {string} attributeName
  * @param {string} attributeValue
  */
-function modifyElementAttribute(element, attributeName, attributeValue) {
+export function modifyElementAttribute(element, attributeName, attributeValue) {
     element.setAttribute(attributeName, attributeValue);
 }
 
-module.exports = { createAndAppendElement, modifyElementAttribute };
+/**
+ * Adds a click event listener to the specified element.
+ * @param {HTMLElement} element
+ * @param {Function} callback
+ */
+export function addClickListener(element, callback) {
+}
+
+/**
+ * Finds the first child element with the specified class name.
+ * @param {HTMLElement} parent
+ * @param {string} className
+ * @return {HTMLElement|null}
+ */
+export function findChildByClass(parent, className) {
+}

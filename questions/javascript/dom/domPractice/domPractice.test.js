@@ -19,3 +19,11 @@ test('Modifies an element\'s attribute', () => {
 
     expect(element.getAttribute('class')).toBe('test-class');
 })
+
+test('Add a click event listener to an element', () => {
+
+})
+
+test('Find a child element by class name', () => {
+    
+})
