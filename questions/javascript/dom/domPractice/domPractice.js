@@ -41,3 +41,12 @@ export function addClickListener(element, callback) {
 export function findChildByClass(parent, className) {
     return parent.querySelector(`.${className}`);
 }
+
+/**
+ * Toggles a class on the specified element.
+ * @param {HTMLElement} element - The element to modify.
+ * @param {string} className - The class name to toggle.
+ */
+export function toggleClass(element, className) {
+    element.classList.toggle(className);
+}

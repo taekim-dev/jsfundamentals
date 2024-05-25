@@ -1,5 +1,5 @@
 import { JSDOM } from 'jsdom';
-const { createAndAppendElement, modifyElementAttribute, addClickListener, findChildByClass } = require('./domPractice.js')
+const { createAndAppendElement, modifyElementAttribute, addClickListener, findChildByClass, toggleClass } = require('./domPractice.js')
 
 const { window } = new JSDOM('<!DOCTYPE html><html><body></body></html>');
 global.document = window.document;
@@ -38,3 +38,16 @@ test('Find a child element by class name', () => {
     expect(child).not.toBeNull();
     expect(child.textContent).toBe('Hello');
 })
+
+test('Toggles a class on an element', () => {
+    const element = document.createElement('div');
+    document.body.appendChild(element);
+
+    expect(element.classList.contains('active')).toBe(false);
+
+    toggleClass(element, 'active');
+    expect(element.classList.contains('active')).toBe(true);
+
+    toggleClass(element, 'active');
+    expect(element.classList.contains('active')).toBe(false);
+});
