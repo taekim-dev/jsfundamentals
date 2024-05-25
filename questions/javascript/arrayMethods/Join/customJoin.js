@@ -1,12 +1,10 @@
 export function customJoin(arr, separator) {
+    if(arr.length === 0) return "";
 
-    let currStr = "";
-    for (let i = 0; i < arr.length; i++) {
-        currStr += arr[i];
-        if (i !== (arr.length-1)) {
-            currStr += separator;
-        }
+    let res = arr[0];
+    for(let i = 1; i < arr.length; i++) {
+        res += separator + arr[i];
     }
-    return currStr;
 
+    return res;
 }
