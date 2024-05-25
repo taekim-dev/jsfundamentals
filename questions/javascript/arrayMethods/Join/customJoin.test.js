@@ -32,5 +32,5 @@ test('Custom join with single element array', () => {
     const arr = ["single"];
     const res = customJoin(arr, ";")
 
-    expect(result).toBe("single");
+    expect(res).toBe("single");
 });
