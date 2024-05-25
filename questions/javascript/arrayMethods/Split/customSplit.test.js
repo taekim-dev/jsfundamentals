@@ -16,8 +16,8 @@ test('Custom split with comma separator', () => {
 
 test('Custom split with limit', () => {
     const str = "one, two, three, four, five";
-    const res = customSplit(str, ", ", 3);
-
+    const result = customSplit(str, ", ", 3);
+    
     expect(result).toEqual(["one", "two", "three"]);
 });
 
@@ -31,6 +31,6 @@ test('Custom split with no separator found', () => {
 test('Custom split with empty string', () => {
     const str = "";
     const result = customSplit(str, ",");
-    
+
     expect(result).toEqual([""]);
 });
