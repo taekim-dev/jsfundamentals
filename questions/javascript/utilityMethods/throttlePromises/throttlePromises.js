@@ -10,3 +10,8 @@ function throttlePromises(funcs, max){
 
 module.exports = throttlePromises;
 
+throttleAsync(callApis, 5).then((data) => {
+  // the data is the same as `Promise.all` 
+}).catch((err) => {
+  // any error occurs in the callApis would be relayed here
+})
