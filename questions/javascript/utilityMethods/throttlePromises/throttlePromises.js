@@ -5,8 +5,15 @@
  * @return {Promise}
  */
 function throttlePromises(funcs, max){
-    // your code here
-  }
+    const taskQueue = new Array(max);
+    const waitingQueue = funcs;
+    const currentlyRunning = 0;
+
+    function 
+
+    
+
+}
 
 module.exports = throttlePromises;
 
