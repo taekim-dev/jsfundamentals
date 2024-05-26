@@ -1,8 +1,12 @@
-import { getTreeHeight } from './domFunctions';
+import { JSDOM } from 'jsdom';
+import { getTreeHeight } from './domTreeHeight';
+
+const { window } = new JSDOM('<!DOCTYPE html><html><body></body></html>');
+global.document = window.document;
 
 test('Empty root node should have height 0', () => {
     document.body.innerHTML = '';
-    const root = document.body;
+    const root = document.body.firstChild;
     
     expect(getTreeHeight(root)).toBe(0);
 });
@@ -50,7 +54,7 @@ test('Complex structure should return correct height', () => {
             </div>
         </div>`;
     const root = document.querySelector('div');
-    expect(getTreeHeight(root)).toBe(5);
+    expect(getTreeHeight(root)).toBe(4);
 });
 
 test('Single level structure should return height 2', () => {

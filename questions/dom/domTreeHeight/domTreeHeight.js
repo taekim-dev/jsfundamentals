@@ -4,13 +4,12 @@
  * @return {number}
  */
 export function getTreeHeight(tree) {
+    if (!tree) return 0;
 
-
-
-    let height = 0;
-    if (tree) {
-        height += 1;
-        return Math.max(tree.left, tree.right);    
+    let depth = 0;
+    for (let childNode of tree.children) {
+        depth = Math.max(depth, getTreeHeight(childNode));
     }
-    
+
+    return depth + 1;
 }
