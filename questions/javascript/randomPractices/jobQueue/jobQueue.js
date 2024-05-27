@@ -1,5 +1,4 @@
 class Queue {
-    
     constructor(jobs = [], capacity = 1, maxRetries = 3) {
         this.jobs = jobs;
         this.capacity = capacity;
@@ -14,10 +13,30 @@ class Queue {
     }
 
     async runJobs() {
-        while (this.currentRunning < this.capacity && this.jobs.lnegth > 0) {
+        while (this.currentRunning < this.capacity && this.jobs.length > 0) {
             const job = this.jobs.shift();
             this.executables.push(job);
             this.executeJob(job);
+        }
+    }
+
+    async executeJob(job, retries = 0) {
+        this.currentRunning++;
+        try {
+            await job();
+            console.log('Job completed successfully');
+        } catch (error) {
+            console.error(`Job failed: ${error}`);
+            if (retries < this.maxRetries) {
+                console.log(`Retrying job (${retries + 1}/${this.maxRetries})`);
+                this.jobs.push(() => this.executeJob(job, retries + 1));
+            } else {
+                console.error('Job failed after maximum retries');
+            }
+        } finally {
+            this.currentRunning--;
+            this.executables.shift();
+            this.runJobs();
         }
     }
 }
@@ -38,5 +57,3 @@ queue.addJob(job);
 queue.addJob(jobWithFailure);
 queue.addJob(job);
 queue.addJob(job);
-
-queue.processJob();
