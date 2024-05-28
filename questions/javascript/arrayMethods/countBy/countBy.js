@@ -5,4 +5,4 @@
  */
 export default function countBy(array, iteratee) {
     throw 'Not implemented!';
-  }
+}
