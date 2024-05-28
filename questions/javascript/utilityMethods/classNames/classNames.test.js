@@ -1,4 +1,4 @@
-const classNames = require('./classNames.js');
+import classNames from './classNames'
 
 describe('classNames Test', () => {
     describe('standard behavior', () => {
