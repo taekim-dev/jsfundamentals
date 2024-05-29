@@ -2,9 +2,49 @@ import Queue from "./queue";
 
 describe('Queue Test', () => {
     describe('standard behavior', () => {
-        test('description', () => {
+        test('queue is empty', () => {
+            const queue = new Queue();
+            const res = queue.isEmpty();
 
-            expect().toEqual();
+            expect(res).toEqual(true);
+        });
+
+        test('Add elements into the Queue', () => {
+            const queue = new Queue();
+            queue.enqueue(1);
+            queue.enqueue(2);
+            queue.enqueue(3);
+            queue.enqueue(4);
+
+            const res = queue.length();
+
+            expect(res).toEqual(4);
+        });
+
+        test('Remove elements from the Queue', () => {
+            const queue = new Queue();
+            queue.enqueue(1);
+            queue.enqueue(2);
+            queue.enqueue(3);
+            queue.enqueue(4);
+
+            queue.dequeue()
+            queue.dequeue()
+            
+            const res = queue.length();
+            expect(res).toEqual(2);
+        });
+
+        test('Check front and back of the queue', () => {
+            const queue = new Queue();
+            queue.enqueue(3);
+            queue.enqueue(4);
+            queue.enqueue(4);
+
+            const front = queue.front();
+            const back = queue.back();
+            expect(front).toEqual(3);
+            expect(back).toEqual(3);
         });
     })
 
@@ -13,17 +53,3 @@ describe('Queue Test', () => {
         });
     })
 })
-
-
-
-
-const queue = new Queue();
-queue.isEmpty(); // true
-queue.enqueue(1);
-queue.enqueue(2);
-queue.length(); // 2
-queue.enqueue(3);
-queue.front(); // 1
-queue.back(); // 3
-queue.dequeue(); // 1
-queue.isEmpty(); // false
