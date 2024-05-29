@@ -8,6 +8,11 @@ describe('Queue Test', () => {
 
             expect(res).toEqual(true);
         });
+        test('enqueue()', () => {
+            const q = new Queue();
+            expect(q.enqueue(100)).toBe(1);
+            expect(q.enqueue(200)).toBe(2);
+        });
 
         test('Add elements into the Queue', () => {
             const queue = new Queue();

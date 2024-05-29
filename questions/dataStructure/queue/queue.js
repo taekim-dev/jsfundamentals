@@ -10,6 +10,7 @@ export default class Queue {
      */
     enqueue(item) {
       this.items.push(item);
+      return this.length();
     }
   
     /**
@@ -33,7 +34,7 @@ export default class Queue {
      * @return {*} The item at the front of the queue if it is not empty, `undefined` otherwise.
      */
     front() {
-      return this.items.length > 0 ? this.items[0] : null;
+      return this.items.length > 0 ? this.items[0] : undefined;
     }
   
     /**
@@ -41,7 +42,7 @@ export default class Queue {
      * @return {*} The item at the back of the queue if it is not empty, `undefined` otherwise.
      */
     back() {
-      return this.items.length > 0 ? this.items[this.items.length-1] : null;
+      return this.items.length > 0 ? this.items[this.items.length-1] : undefined;
     }
   
     /**
