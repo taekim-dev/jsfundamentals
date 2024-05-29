@@ -1,6 +1,6 @@
 export default class Queue {
     constructor() {
-      throw 'Not implemented!';
+      this.items = [];
     }
   
     /**
@@ -9,7 +9,7 @@ export default class Queue {
      * @return {number} The new length of the queue.
      */
     enqueue(item) {
-      throw 'Not implemented!';
+      this.items.push(item);
     }
   
     /**
@@ -17,7 +17,7 @@ export default class Queue {
      * @return {*} The item at the front of the queue if it is not empty, `undefined` otherwise.
      */
     dequeue() {
-      throw 'Not implemented!';
+      return this.items.shift();
     }
   
     /**
@@ -25,7 +25,7 @@ export default class Queue {
      * @return {boolean} `true` if the queue has no items, `false` otherwise.
      */
     isEmpty() {
-      throw 'Not implemented!';
+      return this.items.length === 0;
     }
   
     /**
@@ -33,7 +33,7 @@ export default class Queue {
      * @return {*} The item at the front of the queue if it is not empty, `undefined` otherwise.
      */
     front() {
-      throw 'Not implemented!';
+      return this.items.length > 0 ? this.items[0] : null;
     }
   
     /**
@@ -41,7 +41,7 @@ export default class Queue {
      * @return {*} The item at the back of the queue if it is not empty, `undefined` otherwise.
      */
     back() {
-      throw 'Not implemented!';
+      return this.items.length > 0 ? this.items[this.items.length-1] : null;
     }
   
     /**
@@ -49,6 +49,6 @@ export default class Queue {
      * @return {number} The number of items in the queue.
      */
     length() {
-      throw 'Not implemented!';
+      return this.items.length;
     }
   }

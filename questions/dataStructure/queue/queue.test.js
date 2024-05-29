@@ -39,12 +39,12 @@ describe('Queue Test', () => {
             const queue = new Queue();
             queue.enqueue(3);
             queue.enqueue(4);
-            queue.enqueue(4);
+            queue.enqueue(5);
 
             const front = queue.front();
             const back = queue.back();
             expect(front).toEqual(3);
-            expect(back).toEqual(3);
+            expect(back).toEqual(5);
         });
     })
 
