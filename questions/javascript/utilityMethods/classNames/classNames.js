@@ -3,34 +3,30 @@
  * @return {string}
  */
 export default function classNames(...args) {
-    
-    const classes = args;
     const res = [];
-    classes.forEach((element) => {
-        if (Array.isArray(element)) {
-            element.forEach(el => {
-                addElements(el)
-            })
-        } else {
-            addElements(element);
-        }
-    });
 
-    function addElements(element) {
-        if (!element) {
-            return;
-        }
-        if (typeof element === 'string'){
+    function addElements(element){
+        if (!element) return;
+        
+        if (typeof element === 'string') {
             res.push(element);
-        }
-
-        else if (typeof element === 'object') {
-            Object.keys(element).forEach(key => {
-                if(element[key]) {
-                    res.push(key);
+        } else if (typeof element === 'object') {
+            if (Array.isArray(element)) {
+                for(const el of element) {
+                    addElements(el);
                 }
-            })
+            } else {
+                for(const key in element) {
+                    if (element[key]) {
+                        res.push(key);
+                    }
+                }
+            }
         }
+    }
+
+    for (const arg of args) {
+        addElements(arg);
     }
 
     return res.join(' ');
