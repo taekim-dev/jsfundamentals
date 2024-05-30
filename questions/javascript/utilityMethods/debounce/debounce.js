@@ -8,27 +8,14 @@
  */
 function debounce(func, wait, option = { leading: false, trailing: true }) {
     let timer;
-    let lastCallTime = 0;
-    let leadingCalled = false;
-    const { leading, trailing } = option;
 
     function debounced(...args) {
-        const now = Date.now();
-
-        if (leading && now - lastCallTime >= wait) {
-            func.apply(this, args);
-            leadingCalled = true;
-            lastCallTime = now;
-        }
-
         clearTimeout(timer);
-
         timer = setTimeout(() => {
-            if (trailing && !leadingCalled) {
-                func.apply(this, args);
+            if (option.trailing) {
+                func.call(this, args);
             }
-            leadingCalled = false;
-        }, wait);
+        }, wait)
     }
 
     return debounced;
