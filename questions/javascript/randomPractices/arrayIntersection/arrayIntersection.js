@@ -16,10 +16,10 @@ export default function getIntersection(arr1, arr2) {
 
     // return res;
     const res = new Set();
-    const set1 = new Set(arr1.map(element => JSON.stringify(element)));
+    const set1 = new Set(arr1.map(element => typeof element === 'object' ? JSON.stringify(element) : element));
     arr2.forEach(element => {
-        const stringElement = JSON.stringify(element);
-        if (set1.has(stringElement)){
+        const key = typeof element === 'object' ? JSON.stringify(element) : element;
+        if (set1.has(key)){
             res.add(element);
         }
     })
