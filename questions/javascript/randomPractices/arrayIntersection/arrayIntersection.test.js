@@ -1,4 +1,4 @@
-const getIntersection = require('./getIntersection.js');
+import getIntersection from "./arrayIntersection";
 
 describe('getIntersection Function', () => {
     test('returns intersection of two arrays with common elements', () => {
