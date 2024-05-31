@@ -7,10 +7,16 @@
  */
 function throttle(func, wait, option = {leading: true, trailing: true}) {
     let timer = null;
+    const {leading, trailing} = option;
+    let firstCalled = false;
+    let lastCalled = false;
 
     function throttled(...args){
         if (timer === null) {
-            func.apply(this, args);
+            if (!firstCalled && leading) {
+                func.apply(this, args);
+                firstCalled = false;
+            }
             timer = setTimeout(() => {
                 timer = null;
             }, wait)
