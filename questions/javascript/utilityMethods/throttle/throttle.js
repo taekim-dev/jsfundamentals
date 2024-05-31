@@ -21,4 +21,20 @@ function throttle(func, wait, option = {leading: true, trailing: true}) {
 
 module.exports = throttle;
 
+// class Throttle {
+//     constructor(func, wait) {
+//         this.func = func;
+//         this.wait = wait;
+//         this.lastTime = 0;
+//     }
+
+//     throttledFunction(...args) {
+//         const now = Date.now();
+//         if (now - this.lastTime >= this.wait) {
+//             this.lastTime = now;
+//             this.func.apply(this, args);
+//         }
+//     }
+// }
+
 
