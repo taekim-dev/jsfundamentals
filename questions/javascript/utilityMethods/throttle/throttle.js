@@ -37,4 +37,8 @@ module.exports = throttle;
 //     }
 // }
 
+// const throttleInstance = new throttle(() => console.log('Called'), 1000);
+// const throttled = throttleInstance.throttledFunction.bind(throttleInstance);
+// throttled();
+
 
