@@ -13,3 +13,10 @@ const person = { name: 'Alice' };
 const greetAlice = myBind(greet, person, 'Hello');
 
 console.log(greetAlice('!')); // Expected output: "Hello, Alice!"
+
+const add = function(a, b) {
+    return a + b;
+}
+
+const addFive = myBind(add, null, 5);
+console.log(addFive(3));
