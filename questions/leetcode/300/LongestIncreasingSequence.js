@@ -5,18 +5,36 @@
  * @param {number[]} nums
  * @return {number}
  */
+// O(N^2) solution
 var lengthOfLIS = function(nums) {
     if (nums.length < 2) return nums.length;
 
-    const dp = new Array(nums.length).fill(1);
-    for(let i = 0; i < nums.length; i++) {
-        for (let j = i; j < nums.length; j++) {
-            if (nums[j] > nums[i]) {
-                dp[j] = Math.max(dp[j], dp[i] + 1);
-            }
+    let dp = [];
+    nums.forEach(num => {
+        if (dp.length === 0 || dp[dp.length - 1] < num) {
+            dp.push(num);
+        } else {
+            findAndReplace(dp, num);
+        }
+    });
+
+    return dp.length;
+};
+
+// find the smallest element bigger than num, and replace that element with num
+const findAndReplace = function (array, num) {
+    let start = 0;
+    let end = array.length - 1;
+
+    while (start < end) {
+        const mid = Math.floor((start + end) / 2);
+        if (array[mid] < num) {
+            start = mid + 1;
+        } else {
+            end = mid;
         }
     }
-    return Math.max(...dp)
+    array[start] = num;
 };
 
 
