@@ -20,3 +20,10 @@ const add = function(a, b) {
 
 const addFive = myBind(add, null, 5);
 console.log(addFive(3));
+
+const multipy = function(a, b) {
+    return a * b;
+}
+
+const multipyBuyTwo = myBind(multipy, null);
+console.log(multipyBuyTwo(2, 3));
