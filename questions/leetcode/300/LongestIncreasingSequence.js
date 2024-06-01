@@ -6,6 +6,21 @@
  * @return {number}
  */
 // O(N^2) solution
+// var lengthOfLIS = function(nums) {
+//     if (nums.length < 2) return nums.length;
+
+//     const dp = new Array(nums.length).fill(1);
+//     for(let i = 0; i < nums.length; i++) {
+//         for (let j = i; j < nums.length; j++) {
+//             if (nums[j] > nums[i]) {
+//                 dp[j] = Math.max(dp[j], dp[i] + 1);
+//             }
+//         }
+//     }
+//     return Math.max(...dp)
+// };
+
+// O(nLogn) solution
 var lengthOfLIS = function(nums) {
     if (nums.length < 2) return nums.length;
 
