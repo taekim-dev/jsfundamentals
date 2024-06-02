@@ -1,44 +1,56 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Test Flatten Function</title>
-        <script>
-            /**
-             * @paran {HTMLElement | null} root
-             * @return {HTMLElement[]}
-            */
-           function flatten(root) {
+<head>
+    <title>Test Flatten Function</title>
+    <script>
+        /**
+         * @param {HTMLElement | null} root
+         * @return {HTMLElement[]}
+         */
+         function flatten(root) {
+            if (!root) return [];
+            const result = [];
+            const stack = [root];
 
-           }
+            while (stack.length) {
+                const current = stack.pop();
+                result.push(current);
+                for (let i = current.children.length - 1; i >= 0; i--) {
+                    stack.push(current.children[i]);
+                }
+            }
+            console.log(result);
+            return result;
+        }
 
-           document.addEventListener("DOMContentLoaded", function() {
-              const container = document.getElementById('container');
-              const flattnedElements = flatten(container);
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById('container');
+            const flattenedElements = flatten(container);
+            console.log(flattenedElements);
 
-              console.log(flattnedElements);
-
-              const resultContainer = document.getElementById('result');
-              flattnedElements.forEach(element => {
+            const resultContainer = document.getElementById('result');
+            flattenedElements.forEach(element => {
                 const div = document.createElement('div');
                 div.textContent = element.tagName;
                 resultContainer.appendChild(div);
-              })
-           })
-        </script>
-    </head>
-    <body>
-        <h1>Test Flatten Function</h1>
-        <div id="container">
-            <h2>Heading</h2>
-            <p>This is a paragraph.</p>
-            <ul>
-                <li>List item 1</li>
-                <li>List item 2</li>
-                <li>List item 3</li>
-            </ul>
-            <button id="clickMeButton">Click Me!</button>
-        </div>
-        <h2>Flattened Elements</h2>
-        <div id="result"></div>
-    </body>
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Test Flatten Function</h1>
+    <div id="container">
+        <h2>Heading</h2>
+        <p>This is a paragraph.</p>
+        <ul>
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+        </ul>
+        <button id="clickMeButton">Click Me!</button>
+    </div>
+
+    <h2>Flattened Elements</h2>
+    <div id="result"></div>
+</body>
 </html>
