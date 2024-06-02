@@ -18,3 +18,20 @@ const func = (arg1, arg2, callback) => {
     }, 1000)
 }
 
+const promisedFuc = promisify(func);
+
+promisedFuc('arg1', 'arg2')
+    .then((data) => {
+        console.log(data);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+
+promisedFunc('arg1')
+    .then((data) => {
+        console.log(data);
+    })
+    .catch((error) => {
+        console.error(error); // Mising arguments
+    })
