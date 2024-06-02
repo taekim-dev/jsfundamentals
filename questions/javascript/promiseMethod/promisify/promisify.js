@@ -1,13 +1,24 @@
-
-
 /**
- * @param {(...args) => void} func
- * @returns {(...args) => Promise<any}
+ * @param {(...args: any[]) => void} func
+ * @returns {(...args: any[]) => Promise<any>}
  */
 function promisify(func) {
+    return function(...args) {
+        return new Promise((resolve, reject) => {
+            console.log('Args before callback:', args);
+            func(...args, (error, data) => {
+                console.log('Inside callback');
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(data);
+                }
+            });
+        });
+    };
 }
-  
-// Orinal function
+
+// Original function
 const func = (arg1, arg2, callback) => {
     setTimeout(() => {
         if (arg1 && arg2) {
@@ -15,14 +26,14 @@ const func = (arg1, arg2, callback) => {
         } else {
             callback(`Error: Missing arguments`);
         }
-    }, 1000)
-}
+    }, 1000);
+};
 
-const promisedFuc = promisify(func);
+const promisedFunc = promisify(func);
 
-promisedFuc('arg1', 'arg2')
+promisedFunc('arg1', 'arg2')
     .then((data) => {
-        console.log(data);
+        console.log(data); // Output: Success with arg1 and arg2
     })
     .catch((error) => {
         console.error(error);
@@ -33,5 +44,5 @@ promisedFunc('arg1')
         console.log(data);
     })
     .catch((error) => {
-        console.error(error); // Mising arguments
-    })
+        console.error(error); // Output: Error: Missing arguments
+    });
