@@ -6,10 +6,10 @@ function model(state, element) {
     element.value = state.value;
 
     Object.defineProperty(state, 'value', {
-        get () {
+        get() {
             return element.value;
         },
-        set (newValue) {
+        set(newValue) {
             element.value = newValue;
         },
         configurable: true,
@@ -20,14 +20,13 @@ function model(state, element) {
     });
 }
 
+const input = document.createElement('input');
+const state = { value: 'BFE' };
+model(state, input);
 
-const input = document.createElement('input')
-const state = { value: 'BFE' }
-model(state, input)
-
-console.log(input.value) // 'BFE'
-state.value = 'dev'
-console.log(input.value) // 'dev'
-input.value = 'BFE.dev'
-input.dispatchEvent(new Event('change'))
-console.log(state.value) // 'BFE.dev'
+console.log(input.value); // 'BFE'
+state.value = 'dev';
+console.log(input.value); // 'dev'
+input.value = 'BFE.dev';
+input.dispatchEvent(new Event('change'));
+console.log(state.value); // 'BFE.dev'
