@@ -3,10 +3,22 @@
  * @param {HTMLInputElement} element
  */
 function model(state, element) {
+    element.value = state.value;
 
+    Object.defineProperty(state, 'value', {
+        get () {
+            return element.value;
+        },
+        set (newValue) {
+            element.value = newValue;
+        },
+        configurable: true,
+    });
+
+    element.addEventListener('change', () => {
+        state.value = element.value;
+    });
 }
-
-
 
 
 const input = document.createElement('input')
