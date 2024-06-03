@@ -2,22 +2,44 @@
  * @param {{value: string}} state
  * @param {HTMLInputElement} element
  */
+// function model(state, element) {
+//     element.value = state.value;
+
+//     Object.defineProperty(state, 'value', {
+//         get() {
+//             return element.value;
+//         },
+//         set(newValue) {
+//             element.value = newValue;
+//         },
+//         configurable: true,
+//     });
+
+//     element.addEventListener('change', () => {
+//         state.value = element.value;
+//     });
+// }
+
 function model(state, element) {
-    element.value = state.value;
+   const handler = {
+    set(target, property, value) {
+        if (property === 'value') {
+            element.value = value;
+        }
+        target[property] = value;
+        return true;
+    }
+   }
 
-    Object.defineProperty(state, 'value', {
-        get() {
-            return element.value;
-        },
-        set(newValue) {
-            element.value = newValue;
-        },
-        configurable: true,
-    });
+   const proxyState = new Proxy(state, handler);
 
-    element.addEventListener('change', () => {
-        state.value = element.value;
-    });
+   element.value = state.value;
+
+   element.addEventListener('change', () => {
+    proxyState.value = element.value;
+   })
+
+   return proxyState;
 }
 
 const input = document.createElement('input');
