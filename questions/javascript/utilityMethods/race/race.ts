@@ -7,7 +7,18 @@ type AsyncFunc = (callback: Callback, data?: any) => void;
  * @return {(callback: Callback) => void}
  */
 function race(funcs: AsyncFunc[]) {
+    return (callback: Callback, data?: any) => {
+        let finished = false;
 
+        funcs.forEach((func) => {
+            func((error, result) => {
+                if (!finished) {
+                    finished = true;
+                    callback(error, result);
+                }
+            }, data);
+        });
+    };
 }
 
 const async1: AsyncFunc = (callback) => {
