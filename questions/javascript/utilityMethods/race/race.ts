@@ -7,18 +7,21 @@ type AsyncFunc = (callback: Callback, data?: any) => void;
  * @return {(callback: Callback) => void}
  */
 function race(funcs: AsyncFunc[]) {
-    return (callback: Callback, data?: any) => {
-        let finished = false;
 
-        funcs.forEach((func) => {
+    function first(callback: Callback, data?: any) {
+        let firstCalled = false
+
+        funcs.forEach(func => {
             func((error, result) => {
-                if (!finished) {
-                    finished = true;
+                if (!firstCalled) {
+                    firstCalled = true;
                     callback(error, result);
                 }
-            }, data);
-        });
-    };
+            }, data)
+        })
+    }
+
+    return first;
 }
 
 const async1: AsyncFunc = (callback) => {
@@ -41,4 +44,4 @@ first((error, data) => {
     } else {
         console.log(data); // 2
     }
-});
+}, 1);
