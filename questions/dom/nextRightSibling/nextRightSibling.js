@@ -4,24 +4,53 @@
  * @param {HTMLElement} target
  * @return {HTMLElemnt | null}
  */
+// function nextRightSibling(root, target) {
+//     if (!root || !target) return null;
+
+//     const queue = [root];
+
+//     while(queue.length > 0) {
+//         const currNode = queue.shift();
+
+//         if (currNode === target) {
+//             return currNode.nextElementSibling;
+//         }
+
+//         for (let i = 0; i < currNode.children.length; i++) {
+//             queue.push(currNode.children[i]);
+//         }
+//     }
+
+//     return null;
+// }
+
 function nextRightSibling(root, target) {
     if (!root || !target) return null;
 
-    const queue = [root];
+    const queue = [{node : root, level : 0}];
+    let foundTarget = false;
+    let targetLevel = 0;
 
-    while(queue.length > 0) {
-        const currNode = queue.shift();
+    while (queue.length > 0) {
+        const { node, level } = queue.shift();
 
-        if (currNode === target) {
-            return currNode.nextElementSibling;
+        if (foundTarget) {
+            if (targetLevel === level) {
+                return node;
+            } else {
+                return null;
+            }
         }
 
-        for (let i = 0; i < currNode.children.length; i++) {
-            queue.push(currNode.children[i]);
+        if (node === target) {
+            foundTarget = true;
+            targetLevel = level;
+        }
+
+        for (let i = 0; i < node.children.length; i++) {
+            queue.push({node: node.children[i], level: level + 1})
         }
     }
-
-    return null;
 }
 
 /*
