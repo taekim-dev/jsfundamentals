@@ -48,3 +48,27 @@ class NodeStore {
         return this.nodes.hasOwnProperty(key);
     }
 }
+
+(function() {
+    var store = new NodeStore();
+
+    var node1 = document.createElement('div');
+    var node2 = document.createElement('span');
+    var node3 = document.createElement('p');
+
+    store.set(node1, 'data for node 1');
+    console.log(store.get(node1)); //'data for node 1'
+
+    store.set(node2, { key: 'value for node 2' });
+    console.log(store.get(node2)); //{ key: 'value for node 2' }
+
+    console.log(store.has(node1)); // true
+    console.log(store.has(node3)); // false
+
+    store.set(node1, 'updated data for node 1');
+    console.log(store.get(node1)); // 'updated data for node 1'
+
+    // Test nodes with same structure
+    var anotherNode1 = document.createElement('div');
+    console.log(store.get(anotherNode1)); // undefined
+})();
