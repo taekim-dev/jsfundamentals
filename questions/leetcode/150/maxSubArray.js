@@ -26,3 +26,7 @@ console.log('test2', res2 === 8)
 const nums3 = [-9,-8,-7,-5]
 const res3 = maxSubArray(nums3);
 console.log('test3', res3 === -5)
+
+const nums4 = [1, 2, 3, 4, 5];
+const res4 = maxSubArray(nums4);
+console.log('test4', res4 === 15);
