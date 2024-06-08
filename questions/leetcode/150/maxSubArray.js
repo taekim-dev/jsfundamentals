@@ -1,15 +1,19 @@
-class Solution {
-    /**
-     * @param {number[]} nums
-     * @return {number}
-     */
-    maxSubArray(nums) {}
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+function maxSubArray(nums) {
+    let currMax = nums[0];
+    let maxSum = nums[0];
+
+    for (let i = 1; i < nums.length; i++) {
+        currMax = Math.max(nums[i], currMax + nums[i]);
+        maxSum = Math.max(currMax, maxSum);
+    }
+
+    return maxSum;
+
 }
-
-
-const nums0 = []
-const res0 = maxSubArray(nums0)
-console.log('test0', res1 === 0)
 
 const nums1 = [-1]
 const res1 = maxSubArray(nums1)
@@ -21,4 +25,4 @@ console.log('test2', res2 === 8)
 
 const nums3 = [-9,-8,-7,-5]
 const res3 = maxSubArray(nums3);
-console.log('test3', res3 === 0)
+console.log('test3', res3 === -5)
