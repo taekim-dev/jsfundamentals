@@ -3,21 +3,18 @@
  * @returns string
  */
 function removeChars(input) {
-    let result = input.replace(/b/g, '');
+    let cleanedString = input.replace(/b/g, '');
 
-    while(true){
-        const prevLength = result.length;
-        result = result.replace(/ac/g, '');
-        const afterLength = result.length;
+    let previousLength;
 
-        if (prevLength === afterLength) break;
-    }
+    do {
+        previousLength = cleanedString.length;
+        cleanedString = cleanedString.replace(/ac/g, '');
+    } while(previousLength !== cleanedString.length);
 
-    return result;
+    return cleanedString;
 }
 
-
-  
 
 removeChars('ab') // 'a'
 removeChars('abc') // ''
