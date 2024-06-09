@@ -5,7 +5,13 @@
 function removeChars(input) {
     let result = input.replace(/b/g, '');
 
-    result = result.replace(/ac/g, '');
+    while(true){
+        const prevLength = result.length;
+        result = result.replace(/ac/g, '');
+        const afterLength = result.length;
+
+        if (prevLength === afterLength) break;
+    }
 
     return result;
 }
