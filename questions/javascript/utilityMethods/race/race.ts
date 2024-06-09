@@ -24,24 +24,24 @@ function race(funcs: AsyncFunc[]) {
     return first;
 }
 
-const async1: AsyncFunc = (callback) => {
-    setTimeout(() => callback(undefined, 1), 300);
-};
+// const async1: AsyncFunc = (callback) => {
+//     setTimeout(() => callback(undefined, 1), 300);
+// };
 
-const async2: AsyncFunc = (callback) => {
-    setTimeout(() => callback(undefined, 2), 100);
-};
+// const async2: AsyncFunc = (callback) => {
+//     setTimeout(() => callback(undefined, 2), 100);
+// };
 
-const async3: AsyncFunc = (callback) => {
-    setTimeout(() => callback(undefined, 3), 200);
-};
+// const async3: AsyncFunc = (callback) => {
+//     setTimeout(() => callback(undefined, 3), 200);
+// };
 
-const first = race([async1, async2, async3]);
+// const first = race([async1, async2, async3]);
 
-first((error, data) => {
-    if (error) {
-        console.error(error);
-    } else {
-        console.log(data); // 2
-    }
-}, 1);
+// first((error, data) => {
+//     if (error) {
+//         console.error(error);
+//     } else {
+//         console.log(data); // 2
+//     }
+// }, 1);
