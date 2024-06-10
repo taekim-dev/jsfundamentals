@@ -7,17 +7,24 @@
  * @param {any} input
  * @returns {Matcher & {not: Matcher}}
  */
+class AssertionError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "AssertionError";
+    }
+}
+
 function myExpect(input) {
     return {
         toBe(data) {
             if (data !== input) {
-                throw new Error();
+                throw new AssertionError(`Expected ${input} to be ${data}`);
             }
         },
         not: {
             toBe(data) {
                 if (data === input) {
-                    throw new Error();
+                    throw new AssertionError(`Expected ${input} not to be ${data}`);
                 }
             }
         }
@@ -51,4 +58,11 @@ try {
     console.log('test4 passed');
 } catch (e) {
     console.log('test4 failed');
+}
+
+try {
+    myExpect('abc').not.toBe('abc');
+    console.log('test5 passed');
+} catch (e) {
+    console.log('test5 failed', e.name, e.message);
 }
