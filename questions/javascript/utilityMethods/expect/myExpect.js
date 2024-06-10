@@ -8,7 +8,20 @@
  * @returns {Matcher & {not: Matcher}}
  */
 function myExpect(input) {
-    
+    return {
+        toBe(data) {
+            if (data !== input) {
+                throw new Error();
+            }
+        },
+        not: {
+            toBe(data) {
+                if (data === input) {
+                    throw new Error();
+                }
+            }
+        }
+    }
 }
   
   
