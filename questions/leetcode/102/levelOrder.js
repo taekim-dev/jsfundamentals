@@ -64,10 +64,35 @@ const buildTree = (array) => {
 }
 
 
+const testCases = [
+    {
+        input: [3, 9, 20, null, null, 15, 7],
+        expectedOutput: [[3], [9, 20], [15, 7]]
+    },
+    {
+        input: [],
+        expectedOutput: []
+    },
+    {
+        input: [1],
+        expectedOutput: [[1]]
+    },
+    {
+        input: [1, 2, 3, 4, 5, 6, 7],
+        expectedOutput: [[1], [2, 3], [4, 5, 6, 7]]
+    },
+    {
+        input: [1, null, 2, null, 3, null, 4, null, 5],
+        expectedOutput: [[1], [2], [3], [4], [5]]
+    },
+    {
+        input: [1, 2, 3, 4, null, null, 5, 6, null, 7],
+        expectedOutput: [[1], [2, 3], [4, 5], [6, 7]]
+    }
+];
 
-const input = [3, 9, 20, null, null, 15, 7];
-const expectedOutput = [[3], [9, 20], [15, 7]];
-const root = buildTree(input);
-const output = levelOrderTraversal(root);
-
-console.log(JSON.stringify(output) === JSON.stringify(expectedOutput)); // Should print: true
+testCases.forEach(test => {
+    const tree = buildTree(test.input);
+    const output = levelOrderTraversal(tree);
+    console.log(JSON.stringify(output) === JSON.stringify(test.expectedOutput));
+})
