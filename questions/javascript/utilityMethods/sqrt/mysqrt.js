@@ -4,14 +4,24 @@
  */
 function mySqrt(x) {
     if (isNaN(x) || x < 0) return NaN;
+    if (x === 0) return 0;
 
-    for(let i = 0; i <= x; i++){
-        const curr = (i * i);
-        const next = ((i+1) * (i+1));
+    let left = 1
+    let right = Math.floor(x / 2) + 1;
 
-        if (curr <= x && x < next) return i;
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2);
+        const square = mid * mid;
+
+        if (square === x) {
+            return mid;
+        } else if (square < x) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
     }
-
+    return right;
 }
 
 console.log(mySqrt(0)=== 0)
