@@ -2,31 +2,44 @@
  * @param {Array<any>} list
  * @returns {void}
  */
-function moveZeros(list) {
-    if (list.length < 2) return list;
+// function moveZeros(list) {
+//     if (list.length < 2) return list;
 
-    let zeroCount = 0;
-    let i = 0;
-    //first pass: move non zeros forward
-    for(let j = 0; j < list.length; j++) {
-        if (list[j] !== 0) {
-            list[i] = list[j];
-            i++;
-        } else {
-            zeroCount++;
+//     let zeroCount = 0;
+//     let i = 0;
+//     //first pass: move non zeros forward
+//     for(let j = 0; j < list.length; j++) {
+//         if (list[j] !== 0) {
+//             list[i] = list[j];
+//             i++;
+//         } else {
+//             zeroCount++;
+//         }
+//     }
+
+//     //second pass: add zeroes
+//     while (zeroCount > 0) {
+//         list[i] = 0;
+//         i++;
+//         zeroCount--;
+//     }
+
+//     return list;
+// }
+  
+
+function moveZeros(list) {
+    let nextNonZeroPosition = 0;
+
+    for(let i = 0; i < list.length; i++) {
+        if (list[i] !== 0) {
+            [list[nextNonZeroPosition], list[i]] = [list[i], list[nextNonZeroPosition]];
+            nextNonZeroPosition++;
         }
     }
-
-    //second pass: add zeroes
-    while (zeroCount > 0) {
-        list[i] = 0;
-        i++;
-        zeroCount--;
-    }
-
+    
     return list;
 }
-  
 
 
 const list = [1,0,0,2,3]
