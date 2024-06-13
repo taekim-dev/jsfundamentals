@@ -36,3 +36,13 @@ myFinally(promise, () => {
     .catch((error) => {
         console.error("Catch:", error);
     });
+
+
+let promise1 = Promise.resolve('Fulfilled');
+myFinally(promise1, () => console.log('Custom Finally 1')).then(console.log).catch(console.error);
+    
+let promise2 = Promise.reject('Rejected');
+myFinally(promise2, () => console.log('Custom Finally 2')).then(console.log).catch(console.error);
+
+let promise3 = new Promise((resolve) => setTimeout(() => resolve('Delayed Fulfillment'), 1000));
+myFinally(promise3, () => console.log('Custom Finally 3')).then(console.log).catch(console.error);
