@@ -3,9 +3,13 @@
  * @return {Promise<Array<{status: 'fulfilled', value: any} | {status: 'rejected', reason: any}>>}
  */
 function allSettled(promises) {
+    
+    const wrappedPromises = promises.map(p => Promise.resolve(p).then(
+        value => ({ status: 'fulfilled', value }),
+        reason => ({ status: 'rejected', reason })
+    ));
 
-
-
+    return Promise.all(wrappedPromises);
 }
   
   
