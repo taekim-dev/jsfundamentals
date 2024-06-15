@@ -5,5 +5,7 @@
  * @return {Promise<any>}
  */
 function fetchWithAutoRetry(fetcher, maximumRetryCount) {
-    
+
 }
+
+module.exports = fetchWithAutoRetry;
