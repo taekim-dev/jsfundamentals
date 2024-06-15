@@ -13,9 +13,6 @@ async function fetchWithAutoRetry(fetcher, maximumRetryCount) {
             return result;
         } catch (error) {
             retryCount++;
-            if (retryCount >= maximumRetryCount) {
-                throw error;
-            }
         }
     }
 
