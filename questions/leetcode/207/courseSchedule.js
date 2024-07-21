@@ -21,12 +21,37 @@ var canFinish = function(numCourses, prerequisites) {
         }
     }
 
-    let currMax = 0;
-    
-    //bfs or dfs
+    const visited = new Set();
+    const stack = new Set();
 
-    return numCourses === currMax;
+    const hasCycle = (course) => {
+        if (stack.has(course)) {
+            return true; // cycle
+        }
 
+        if (visited.has(course)) {
+            return false;
+        }
+
+        visited.add(course);
+        stack.add(course);
+
+        for (let neighbor of graph[course]) {
+            if (hasCycle(neighbor)) { 
+                return true;
+            }
+        }
+
+        stack.delete(course);
+        return false;
+    }
+
+    for (let i = 0; i < numCourses; i++) {
+        if(hasCycle(i)) {
+            return false;
+        }
+    }
+    return true;
 };
 
 const numCourses1 = 2;
