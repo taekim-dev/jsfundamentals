@@ -4,9 +4,32 @@
  * @return {number[][]}
  */
 var insert = function(intervals, newInterval) {
-    intervals.push(newInterval);
-    const newIntervals = intervals.sort((a, b) => a[0] - b[0]);
-    console.log(newIntervals);
+    let newIntervals = [];
+    let i = 0;
+
+    // Add all intervals ending before newInterval starts
+    while (i < intervals.length && intervals[i][1] < newInterval[0]) {
+        newIntervals.push(intervals[i]);
+        i++;
+    }
+
+    // Merge all overlapping intervals to one considering newInterval
+    while (i < intervals.length && intervals[i][0] <= newInterval[1]) {
+        newInterval = [
+            Math.min(intervals[i][0], newInterval[0]),
+            Math.max(intervals[i][1], newInterval[1])
+        ];
+        i++;
+    }
+    newIntervals.push(newInterval);
+
+    // Add all the rest
+    while (i < intervals.length) {
+        newIntervals.push(intervals[i]);
+        i++;
+    }
+
+    return newIntervals;
 };
 
 var arraysEqual = function(array1, array2) {
