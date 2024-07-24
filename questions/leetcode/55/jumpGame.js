@@ -3,7 +3,18 @@
  * @return {boolean}
  */
 var canJump = function(nums) {
-    
+    if(nums.length === 1) return true;
+
+    const currNum = nums[0];
+    if(currNum === 0) return false;
+
+    for(let i = 1; i <= currNum; i++) {
+        if(canJump(nums.slice(i))){
+            return true;
+        }
+    }
+
+    return false;
 };
 
 const nums1 = [2,3,1,1,4]
