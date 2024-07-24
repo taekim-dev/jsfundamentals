@@ -3,18 +3,15 @@
  * @return {boolean}
  */
 var canJump = function(nums) {
-    if(nums.length === 1) return true;
+    let farthest = 0;
 
-    const currNum = nums[0];
-    if(currNum === 0) return false;
+    for(let i = 0; i < nums.length; i++) {
+        if (i > farthest) return false;
 
-    for(let i = 1; i <= currNum; i++) {
-        if(canJump(nums.slice(i))){
-            return true;
-        }
+        farthest = Math.max(farthest, i + nums[i]);
     }
 
-    return false;
+    return true;
 };
 
 const nums1 = [2,3,1,1,4]
