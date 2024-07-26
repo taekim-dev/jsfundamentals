@@ -2,23 +2,20 @@ import _ from 'lodash';
 
 class Solution {
 
-    getKey() {
-        return "3lkdkau12*a!da"
+    constructor() {
+        this.key = this.generateKey();
+    }
+
+    generateKey() {
+        return String.fromCharCode(257)
     }
     /**
      * @param {string[]} strs
      * @returns {string}
      */
     encode(strs) {
-        let encoded = "";
-        const key = this.getKey();
-        for(let i = 0; i < strs.length-1; i++) {
-            encoded += strs[i];
-            encoded += key;
-        }
-        encoded += strs[strs.length-1];
-
-        return encoded;
+        const key = this.key;
+        return strs.join(key);
     }
 
     /**
@@ -26,9 +23,8 @@ class Solution {
      * @returns {string[]}
      */
     decode(str) {
-        const key = this.getKey();
-        const decoded = str.split(key);
-        return decoded;
+        const key = this.key;
+        return str.split(key)
     }
 }
 
