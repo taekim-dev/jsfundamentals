@@ -6,41 +6,18 @@ class Solution {
      * @return {string[][]}
      */
     groupAnagrams(strs) {
-        
-        const status = new Array(strs.length).fill(false);
-        const res = [];
+        const map = new Map();
 
-        for(let i = 0; i < strs.length; i++) {
-            if (status[i]) continue;
-
-            let current = [strs[i]];
-            status[i] = true;
-
-            for (let j = i + 1; j < strs.length; j++) {
-                if (this.isAnagram(strs[i], strs[j])) {
-                    current.push(strs[j]);
-                    status[j] = true;
-                }
+        for (const str of strs) {
+            const sortedStr = str.split('').sort().join('');
+            if (map.has(sortedStr)) {
+                map.get(sortedStr).push(str);
+            } else {
+                map.set(sortedStr, [str]);
             }
-
-            res.push(current);
         }
 
-        return res;
-
-    }
-
-    isAnagram(str1, str2) {
-        if (str1.length !== str2.length) return false;
-
-        str1 = str1.split('').sort().join('');
-        str2 = str2.split('').sort().join('');
-
-        for (let i = 0; i < str1.length; i++) {
-            if (str1[i] !== str2[i]) return false;
-        }
-
-        return true;
+        return Array.from(map.values());
     }
 }
 
