@@ -21,6 +21,26 @@ var inorderTraversal = function(root) {
     return res;
 };
 
+var inorderTraversal = function(root) {
+    const res = [];
+    const stack = [];
+    let current = root;
+    
+    while (current !== null || stack.length > 0) {
+
+        while (current !== null) {
+            stack.push(current);
+            current = current.left;
+        }
+
+        current = stack.pop();
+        res.push(current.val);
+        current = current.right;
+    }
+
+    return res;
+};
+
 let root1 = new TreeNode(1);
 root1.right = new TreeNode(2);
 root1.right.left = new TreeNode(3);
