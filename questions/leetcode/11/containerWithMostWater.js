@@ -14,7 +14,7 @@ var maxArea = function(height) {
         const currContainer = Math.min(leftHeight, rightHeight) * (right - left);
         maxContainer = Math.max(currContainer, maxContainer);
 
-        if (left < right) {
+        if (leftHeight < rightHeight) {
             left++;
         } else {
             right--;
